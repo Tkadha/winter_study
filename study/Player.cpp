@@ -1,29 +1,28 @@
-#include <iostream>
-#include <Windows.h>
-#include <conio.h>
 #include "Player.h"
 
 
-#define BoardX 15
-#define BoardY 15
 
-#define UP 72
-#define DOWN 80
-#define LEFT 75
-#define RIGHT 77
-#define SPACE 32
-#define D 100
-#define ESCAPE 27
-
-
-void Player::init() {
+Player::Player()
+{
 	x = 1;
 	y = 1;
 }
+
+Player::~Player()
+{
+
+}
+
+void Player::init() {
+
+}
+
 void Player::Update() {
-		int command;
-		command = _getch();
-		//std::cout << command << std::endl;
+	int input = _kbhit();
+	if (input) {
+		gotoxy(x * 2, y);
+		std::cout << "  ";
+		int command = _getch();
 		if (command == 224) {
 			command = _getch();
 			switch (command)
@@ -57,12 +56,32 @@ void Player::Update() {
 			case D:			// 공격				
 				break;
 			case ESCAPE:		// 뒤로가기 or 프로그램 종료
-				system("cls");
-				exit(0);
+				key = command;
 				break;
 			default:
 				break;
 			}
 		}
 	}
+}
+
+void Player::Render()
+{
+
+	gotoxy(x * 2, y);
+	std::cout << "▣";
+	gotoxy(0, BoardY);
+}
+
+void Player::Destroy()
+{
+}
+
+void Player::gotoxy(int x, int y)
+{
+	COORD Cur;
+	Cur.X = x;
+	Cur.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
+}
 

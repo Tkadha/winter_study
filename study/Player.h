@@ -1,14 +1,22 @@
 #pragma once
-#ifndef __Player_h__
-#define __Player_h__
+#include "Common.h"
+
+#define ESCAPE 27
 
 class Player {
 public:
 	int x;
 	int y;
+	int key;
+	Player();
+	~Player();
+
+
 	void init();
 	void Update();
+	void Render();
+	void Destroy();
+
+	void gotoxy(int x, int y);
 };
 
-
-#endif // !__Player_h__

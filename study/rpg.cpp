@@ -1,17 +1,21 @@
 #define  _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <Windows.h>
-#include <conio.h>
+#include "Common.h"
 #include "Game.h"
 
-Game game;
 
 int main() {
-	game.init();
-	while (1) {
-		game.Render();
-		game.Update();
-		system("cls");
+	Game* game = new Game;
+	game->init();
+
+	while (true) {
+		game->Update();
+		game->Render();
+		Sleep(100);
+
+		if (game->IsNeedDestroy()) break;
 	}
+
+	game->Destroy();
+	delete game;
 	return 0;
 }

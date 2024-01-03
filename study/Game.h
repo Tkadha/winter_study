@@ -1,17 +1,22 @@
 #pragma once
-#ifndef __Game_h__
-#define __Game_h__
+#include "Common.h"
 #include "Player.h"
+#include "Board.h"
 
 
 class Game {
+Player player;
+Board board;
+int key;
 public:
-	Player player;
 
+	Game();
+	~Game();
 	void init();
 	void Update();
 	void Render();
+	void Destroy();
 
+	bool IsNeedDestroy() { return player.key == ESCAPE; };
 };
 
-#endif // !__Game_h__
