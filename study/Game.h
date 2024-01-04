@@ -2,11 +2,12 @@
 #include "Common.h"
 #include "Player.h"
 #include "Board.h"
-
+#include "Timer.h"
 
 class Game {
-Player player;
-Board board;
+Player *player = new Player;
+Board *board = new Board;
+Timer *time = new Timer;
 public:
 
 	Game();
@@ -16,6 +17,6 @@ public:
 	void Render();
 	void Destroy();
 
-	bool IsNeedDestroy() { return player.key == ESCAPE; };
+	bool IsNeedDestroy() { return player->key == ESCAPE; };
 };
 
