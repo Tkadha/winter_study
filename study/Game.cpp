@@ -12,19 +12,19 @@ Game::~Game()
 }
 
 void Game::init() {
-	player.init();
 	board.init();
-	board.Render();
+	player.init();
 }
 
 void Game::Update() {
-	player.Update();
 	board.Update();
+	player.Update();
 
 }
 
 void Game::Render() {
 	//system("cls");
+	board.Render();
 	player.Render();
 }
 

@@ -7,7 +7,6 @@
 class Game {
 Player player;
 Board board;
-int key;
 public:
 
 	Game();

@@ -13,3 +13,5 @@
 #define SPACE 32
 #define D 100
 #define ESCAPE 27
+
+void gotoxy(int x, int y);

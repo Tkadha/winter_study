@@ -11,12 +11,13 @@ public:
 	Player();
 	~Player();
 
-
 	void init();
 	void Update();
 	void Render();
 	void Destroy();
-
-	void gotoxy(int x, int y);
+private:
+	int way;
+	bool attack;
+	int attack_count;
 };
 

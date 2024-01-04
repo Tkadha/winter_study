@@ -11,15 +11,6 @@ Board::~Board()
 
 void Board::init()
 {
-}
-
-void Board::Update()
-
-{
-}
-
-void Board::Render()
-{
 	for (int i = 0; i < BoardY; ++i) {
 		for (int j = 0; j < BoardX; ++j) {
 			if (i == 0 || j == 0 || i == BoardY - 1 || j == BoardX - 1) {
@@ -30,6 +21,16 @@ void Board::Render()
 		}
 		std::cout << std::endl;
 	}
+}
+
+void Board::Update()
+
+{
+}
+
+void Board::Render()
+{
+	
 }
 
 void Board::Destroy()
