@@ -19,5 +19,6 @@ private:
 	int way;
 	bool attack;
 	int attack_count;
+	bool see_attack;
 };
 

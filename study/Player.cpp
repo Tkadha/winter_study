@@ -9,6 +9,7 @@ Player::Player()
 	key = 0;
 	way = UP;
 	attack = false;
+	see_attack = false;
 	attack_count = 0;
 }
 
@@ -118,7 +119,8 @@ void Player::Update() {
 			default:
 				break;
 			}
-			std::cout << "  ";
+			if (see_attack)
+				std::cout << "  ";
 		}
 		attack_count = 0;
 		attack = false;
@@ -131,23 +133,40 @@ void Player::Render()
 	gotoxy(x * 2, y);
 	std::cout << "¢Ã";
 	if (attack) {
+		see_attack = false;
 		switch (way) {
 		case UP:
 			gotoxy(x * 2, y - 1);
+			if (y != 1) {
+				std::cout << "¡ß";
+				see_attack = true;
+			}
+
 			break;
 		case DOWN:
 			gotoxy(x * 2, y + 1);
+			if (y != BoardY - 2) {
+				std::cout << "¡ß";
+				see_attack = true;
+			}
 			break;
 		case LEFT:
 			gotoxy((x - 1) * 2, y);
+			if (x != 1) {
+				std::cout << "¡ß";
+				see_attack = true;
+			}
 			break;
 		case RIGHT:
 			gotoxy((x + 1) * 2, y);
+			if (x != BoardX - 2) {
+				std::cout << "¡ß";
+				see_attack = true;
+			}
 			break;
 		default:
 			break;
 		}
-		std::cout << "¡ß";
 		attack_count++;
 	}
 	gotoxy(0, BoardY);
