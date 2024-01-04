@@ -6,6 +6,8 @@ Player::Player()
 {
 	x = 1;
 	y = 1;
+	key = 0;
+	way = UP;
 	attack = false;
 	attack_count = 0;
 }
@@ -82,8 +84,15 @@ void Player::Update() {
 				if(!attack)
 					attack = true;
 				break;
-			case ESCAPE:		// 뒤로가기 or 프로그램 종료
+			case ESCAPE:		//프로그램 종료
 				key = command;
+				break;
+			case WAVE:
+				gotoxy(0, BoardY);
+				std::cout << "Press Enter to continue..." << std::endl;
+				while (!_kbhit());
+				gotoxy(0, BoardY);
+				std::cout << "                            " << std::endl;
 				break;
 			default:
 				break;

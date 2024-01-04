@@ -13,5 +13,6 @@
 #define SPACE 32
 #define D 100
 #define ESCAPE 27
-
+#define ENTER 13
+#define WAVE 96
 void gotoxy(int x, int y);
