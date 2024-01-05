@@ -7,11 +7,13 @@ class Timer
 public:
 	Timer();
 	~Timer();
-
+	time_t Getfin();
+	void Setstart(time_t);
 	void init();
 	void Update();
 	void Render();
 	void Destroy();
+	void TimerRestart();
 private:
 	time_t start, finish;
 	double clock;

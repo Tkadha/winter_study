@@ -2,11 +2,7 @@
 
 Timer::Timer()
 {
-	start = time(NULL);
-	finish = time(NULL);
-	clock = (double)(finish - start);
-	min = (int)clock / 60;
-	sec = (int)clock % 60;
+	
 }
 
 Timer::~Timer()
@@ -14,15 +10,30 @@ Timer::~Timer()
 
 }
 
+time_t Timer::Getfin()
+{
+	return finish;
+}
+
+void Timer::Setstart(time_t fin)
+{
+	start = fin;
+}
+
 void Timer::init()
 {
-
+	start = time(NULL);
+	finish = time(NULL);
+	clock = (double)(finish - start);
+	min = (int)clock / 60;
+	sec = (int)clock % 60;
 }
 
 void Timer::Update()
 {
 	finish = time(NULL);
-	clock = (double)(finish - start);
+	clock += (double)(finish - start);
+	start = finish;
 }
 
 void Timer::Render()
@@ -40,4 +51,9 @@ void Timer::Render()
 void Timer::Destroy()
 {
 
+}
+
+void Timer::TimerRestart()
+{
+	start = finish;
 }

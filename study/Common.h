@@ -15,4 +15,21 @@
 #define ESCAPE 27
 #define ENTER 13
 #define WAVE 96
+
+struct Pos {
+	int x;
+	int y;
+};
+
 void gotoxy(int x, int y);
+
+enum State {
+	State_Wall,
+	State_Player,
+	State_Player_attack,
+	State_Monster,
+	State_Empty
+};
+
+
+
