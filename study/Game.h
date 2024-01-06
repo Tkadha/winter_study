@@ -5,6 +5,7 @@
 #include "Timer.h"
 #include "Monster.h"
 
+#define mob_count 3
 class Game {
 
 public:
@@ -19,7 +20,8 @@ private:
 	Player* player = new Player;
 	Board* board = new Board;
 	Timer* time = new Timer;
-	Monster* monster = new Monster;
+	std::vector<Monster* > monsters;
+	int Mob_id = 0;
 	//int board[BoardY][BoardX];
 };
 

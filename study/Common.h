@@ -2,6 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <conio.h>
+#include <vector>
 
 #define BoardX 15
 #define BoardY 15
