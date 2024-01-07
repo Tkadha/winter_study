@@ -32,8 +32,14 @@ void Game::Update() {
 	board->Update();
 	time->Update();
 	player->Update();
-	for (Monster* i : monsters) {
+	for (Monster* i : monsters) {		
 		i->Update();
+		if (player->DoAttack()) {
+			if (i->CheckHit(player->GetAttackPoint())) {
+				gotoxy(20, 20);
+				std::cout << "hit";
+			}
+		}
 	}
 }
 
@@ -42,8 +48,7 @@ void Game::Render() {
 	time->Render();
 	for (Monster* i : monsters) {
 		i->Render();
-		//gotoxy(BoardX, BoardY);
-		//std::cout << i->Getcount() << " ";
+		
 	}
 	player->Render();
 }

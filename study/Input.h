@@ -10,6 +10,7 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+
 	int Getkey();
 	int Getinput();
 	int Getcommand();

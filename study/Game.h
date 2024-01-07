@@ -15,6 +15,7 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+
 	bool IsNeedDestroy() { return player->Getkey() == ESCAPE; };
 private:
 	Player* player = new Player;

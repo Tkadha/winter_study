@@ -28,6 +28,16 @@ int Player::Getkey()
 	return in.Getkey();
 }
 
+bool Player::DoAttack()
+{
+	return attack;
+}
+
+Pos Player::GetAttackPoint()
+{
+	return attackpoint;
+}
+
 void Player::init() {
 	in.init();
 }
@@ -42,16 +52,20 @@ void Player::Update() {
 			if (attack) {
 				switch (way) {
 				case UP:
-					gotoxy(pos.x * 2, pos.y - 1);
+					attackpoint = { pos.x,pos.y - 1 };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
 					break;
 				case DOWN:
-					gotoxy(pos.x * 2, pos.y + 1);
+					attackpoint = { pos.x,pos.y + 1 };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
 					break;
 				case LEFT:
-					gotoxy((pos.x - 1) * 2, pos.y);
+					attackpoint = { pos.x - 1,pos.y};
+					gotoxy(attackpoint.x * 2, attackpoint.y);
 					break;
 				case RIGHT:
-					gotoxy((pos.x + 1) * 2, pos.y);
+					attackpoint = { pos.x + 1,pos.y };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
 					break;
 				default:
 					break;

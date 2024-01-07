@@ -10,15 +10,19 @@ class Player {
 public:
 	Player();
 	~Player();
-	Pos Getpos();
-	int Getkey();
 	void init();
 	void Update();
 	void Render();
 	void Destroy();
+
+	Pos Getpos();
+	int Getkey();
+	bool DoAttack();
+	Pos GetAttackPoint();
 private:
 	Input in;
 	Pos pos;
+	Pos attackpoint;
 	int way;
 	bool attack;
 	int attack_count;

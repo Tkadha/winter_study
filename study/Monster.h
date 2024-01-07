@@ -19,12 +19,14 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-	int Getcount();
+
+	bool CheckHit(Pos playerattack);
 private:
 	Pos pos;
 	int delay_count;
 	int move_count;
 	int id;
+	int hp;
 };
 
 

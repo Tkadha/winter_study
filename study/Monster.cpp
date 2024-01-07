@@ -15,6 +15,7 @@ void Monster::init(Pos position, int delay, int num)
 	delay_count = delay * 3;
 	move_count = 0;
 	id = num;
+	hp = 1;
 }
 
 void Monster::Update()
@@ -54,8 +55,10 @@ void Monster::Update()
 
 void Monster::Render()
 {
-	gotoxy(pos.x * 2, pos.y);
-	std::cout << "ес";
+	if (hp > 0) {
+		gotoxy(pos.x * 2, pos.y);
+		std::cout << "ес";
+	}
 }
 
 void Monster::Destroy()
@@ -63,7 +66,15 @@ void Monster::Destroy()
 
 }
 
-int Monster::Getcount()
+bool Monster::CheckHit(Pos playerattack)
 {
-	return move_count;
+	if ((pos.x == playerattack.x) && (pos.y == playerattack.y))
+		hp--;
+
+
+	if (hp < 1)
+		return true;
+	else
+		return false;
 }
+
