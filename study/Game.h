@@ -18,7 +18,7 @@ public:
 
 	bool IsNeedDestroy() { return player->Getkey() == ESCAPE; };
 private:
-	Player* player = new Player;
+	Player* player = Player::GetInstance();
 	Board* board = new Board;
 	Timer* time = new Timer;
 	std::vector<Monster* > monsters;

@@ -1,6 +1,7 @@
 #pragma once
-#include "Common.h"
 #include <random>
+#include "Common.h"
+#include "Player.h"
 
 enum Move {
 	Move_UP,
@@ -19,14 +20,15 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-
-	bool CheckHit(Pos playerattack);
+	bool CheckHit();
 private:
+	Player* player = Player::GetInstance();
 	Pos pos;
 	int delay_count;
 	int move_count;
 	int id;
 	int hp;
+	int range;
 };
 
 

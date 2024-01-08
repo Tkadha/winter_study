@@ -8,8 +8,11 @@
 
 class Player {
 public:
-	Player();
 	~Player();
+	Player();
+	Player(const Player& other);
+	static Player* GetInstance();
+
 	void init();
 	void Update();
 	void Render();
@@ -20,6 +23,8 @@ public:
 	bool DoAttack();
 	Pos GetAttackPoint();
 private:
+	static Player* instance;
+
 	Input in;
 	Pos pos;
 	Pos attackpoint;

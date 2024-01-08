@@ -34,12 +34,6 @@ void Game::Update() {
 	player->Update();
 	for (Monster* i : monsters) {		
 		i->Update();
-		if (player->DoAttack()) {
-			if (i->CheckHit(player->GetAttackPoint())) {
-				gotoxy(20, 20);
-				std::cout << "hit";
-			}
-		}
 	}
 }
 

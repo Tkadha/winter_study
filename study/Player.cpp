@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Input.h"
 
-
+Player* Player::instance = nullptr;
 
 Player::Player()
 {
@@ -11,6 +11,18 @@ Player::Player()
 	attack = false;
 	see_attack = false;
 	attack_count = 0;
+}
+
+Player::Player(const Player& other)
+{
+	
+}
+
+Player* Player::GetInstance()
+{
+	if (instance == NULL)
+		instance = new Player();
+	return instance;
 }
 
 Player::~Player()
@@ -48,30 +60,7 @@ void Player::Update() {
 		gotoxy(pos.x * 2, pos.y);
 		std::cout << "  ";
 		command = in.Getcommand();
-		if (command == 224) {
-			if (attack) {
-				switch (way) {
-				case UP:
-					attackpoint = { pos.x,pos.y - 1 };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				case DOWN:
-					attackpoint = { pos.x,pos.y + 1 };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				case LEFT:
-					attackpoint = { pos.x - 1,pos.y};
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				case RIGHT:
-					attackpoint = { pos.x + 1,pos.y };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				default:
-					break;
-				}
-				std::cout << "  ";
-			}
+		if (command == 224) {		
 			command = _getch();
 			switch (command)
 			{
@@ -97,6 +86,29 @@ void Player::Update() {
 				break;
 			default:
 				break;
+			}
+			if (attack) {
+				switch (way) {
+				case UP:
+					attackpoint = { pos.x,pos.y - 1 };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
+					break;
+				case DOWN:
+					attackpoint = { pos.x,pos.y + 1 };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
+					break;
+				case LEFT:
+					attackpoint = { pos.x - 1,pos.y };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
+					break;
+				case RIGHT:
+					attackpoint = { pos.x + 1,pos.y };
+					gotoxy(attackpoint.x * 2, attackpoint.y);
+					break;
+				default:
+					break;
+				}
+				std::cout << "  ";
 			}
 		}
 		else {
