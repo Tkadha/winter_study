@@ -7,6 +7,10 @@ class Timer
 public:
 	Timer();
 	~Timer();
+
+	Timer(const Timer& other);
+	static Timer* GetInstance();
+
 	time_t Getfin();
 	void init();
 	void Update();
@@ -16,6 +20,8 @@ public:
 	void Setstart(time_t);
 	void TimerRestart();
 private:
+	static Timer* instance;
+
 	time_t start, finish;
 	double clock;
 	double min;

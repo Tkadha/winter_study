@@ -31,6 +31,7 @@ void Input::Update()
 			gotoxy(0, BoardY);
 			std::cout << "Press Enter to continue..." << std::endl;
 			while (!_kbhit());
+			time->TimerRestart();
 			gotoxy(0, BoardY);
 			std::cout << "                            " << std::endl;
 			break;

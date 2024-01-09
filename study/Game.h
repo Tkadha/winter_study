@@ -20,7 +20,7 @@ public:
 private:
 	Player* player = Player::GetInstance();
 	Board* board = new Board;
-	Timer* time = new Timer;
+	Timer* time = Timer::GetInstance();
 	std::vector<Monster* > monsters;
 	int Mob_id = 0;
 	//int board[BoardY][BoardX];

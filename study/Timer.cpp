@@ -1,5 +1,7 @@
 #include "Timer.h"
 
+Timer* Timer::instance = nullptr;
+
 Timer::Timer()
 {
 	
@@ -8,6 +10,17 @@ Timer::Timer()
 Timer::~Timer()
 {
 
+}
+
+Timer::Timer(const Timer& other)
+{
+}
+
+Timer* Timer::GetInstance()
+{
+	if (instance == NULL)
+		instance = new Timer();
+	return instance;
 }
 
 time_t Timer::Getfin()
@@ -55,5 +68,6 @@ void Timer::Destroy()
 
 void Timer::TimerRestart()
 {
-	start = finish;
+	start = time(NULL);
+	finish = time(NULL);
 }

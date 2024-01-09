@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "Timer.h"
 
 class Input
 {
@@ -15,6 +16,7 @@ public:
 	int Getinput();
 	int Getcommand();
 private:
+	Timer* time = Timer::GetInstance();
 	int input;
 	int command;
 	int key;
