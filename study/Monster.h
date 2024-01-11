@@ -2,7 +2,7 @@
 #include <random>
 #include "Common.h"
 #include "Player.h"
-
+#include "Data.h"
 enum Move {
 	Move_UP,
 	Move_DOWN,
@@ -10,23 +10,22 @@ enum Move {
 	Move_RIGHT,
 };
 
-class Monster
-{
-	
+class Monster : public Object
+{	
 public:
 	Monster();
 	~Monster();
-	void init(Pos position, int delay, int num);
-	void Update();
-	void Render();
-	void Destroy();
+	virtual void init(int inid) override;
+	virtual void Update() override;
+	virtual void Render() override;
+	virtual void Destroy() override;
+	virtual int Getid() override;
+
 	bool CheckHit();
 private:
-	Player* player = Player::GetInstance();
-	Pos pos;
 	int delay_count;
 	int move_count;
-	int id;
+	static int id;
 	int hp;
 	int range;
 };

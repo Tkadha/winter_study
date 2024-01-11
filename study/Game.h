@@ -4,8 +4,10 @@
 #include "Board.h"
 #include "Timer.h"
 #include "Monster.h"
+#include "Input.h"
+#include "Data.h"
 
-#define mob_count 3
+const int mob_count = 3;
 class Game {
 
 public:
@@ -16,13 +18,11 @@ public:
 	void Render();
 	void Destroy();
 
-	bool IsNeedDestroy() { return player->Getkey() == ESCAPE; };
 private:
-	Player* player = Player::GetInstance();
 	Board* board = new Board;
+	Input* input = new Input;
 	Timer* time = Timer::GetInstance();
-	std::vector<Monster* > monsters;
-	int Mob_id = 0;
+
 	//int board[BoardY][BoardX];
 };
 

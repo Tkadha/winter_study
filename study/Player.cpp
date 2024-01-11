@@ -2,7 +2,8 @@
 #include "Input.h"
 
 Player* Player::instance = nullptr;
-
+bool Player::attack = false;
+Pos Player::attackpoint;
 Player::Player()
 {
 	pos.x = 1;
@@ -30,99 +31,69 @@ Player::~Player()
 
 }
 
-Pos Player::Getpos()
-{
-	return pos;
-}
 
-int Player::Getkey()
-{
-	return in.Getkey();
-}
 
-bool Player::DoAttack()
-{
-	return attack;
-}
-
-Pos Player::GetAttackPoint()
-{
-	return attackpoint;
-}
-
-void Player::init() {
-	in.init();
+void Player::init(int inid) {
+	id = inid;
 }
 
 void Player::Update() {
-	in.Update();
-	if (in.Getinput()) {
+	if (Input::input) {
 		gotoxy(pos.x * 2, pos.y);
 		std::cout << "  ";
-		command = in.Getcommand();
-		if (command == 224) {		
-			command = _getch();
-			switch (command)
-			{
+		switch (Input::key)
+		{
+		case UP:
+			way = Input::key;
+			if (pos.y > 1)
+				pos.y--;
+			break;
+		case DOWN:
+			way = Input::key;
+			if (pos.y < BoardY - 2)
+				pos.y++;
+			break;
+		case LEFT:
+			way = Input::key;
+			if (pos.x > 1)
+				pos.x--;
+			break;
+		case RIGHT:
+			way = Input::key;
+			if (pos.x < BoardX - 2)
+				pos.x++;
+			break;
+		case SPACE:		// 상호작용/확인
+			break;
+		case D:			// 공격
+			if (!attack)
+				attack = true;
+			break;
+		default:
+			break;
+		}
+		if (attack) {
+			switch (way) {
 			case UP:
-				way = command;
-				if (pos.y > 1)
-					pos.y--;
+				attackpoint = { pos.x,pos.y - 1 };
+				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			case DOWN:
-				way = command;
-				if (pos.y < BoardY - 2)
-					pos.y++;
+				attackpoint = { pos.x,pos.y + 1 };
+				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			case LEFT:
-				way = command;
-				if (pos.x > 1)
-					pos.x--;
+				attackpoint = { pos.x - 1,pos.y };
+				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			case RIGHT:
-				way = command;
-				if (pos.x < BoardX - 2)
-					pos.x++;
+				attackpoint = { pos.x + 1,pos.y };
+				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			default:
 				break;
 			}
-			if (attack) {
-				switch (way) {
-				case UP:
-					attackpoint = { pos.x,pos.y - 1 };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				case DOWN:
-					attackpoint = { pos.x,pos.y + 1 };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				case LEFT:
-					attackpoint = { pos.x - 1,pos.y };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				case RIGHT:
-					attackpoint = { pos.x + 1,pos.y };
-					gotoxy(attackpoint.x * 2, attackpoint.y);
-					break;
-				default:
-					break;
-				}
-				std::cout << "  ";
-			}
-		}
-		else {
-			switch (command)
-			{
-			case SPACE:		// 상호작용/확인
-				break;
-			case D:			// 공격
-				if(!attack)
-					attack = true;
-				break;
-			default:
-				break;
-			}
+			std::cout << "  ";
 		}
 	}
 	if (attack_count > 3)
@@ -200,5 +171,10 @@ void Player::Render()
 void Player::Destroy()
 {
 
+}
+
+int Player::Getid()
+{
+	return id;
 }
 

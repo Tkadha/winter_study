@@ -12,13 +12,11 @@ public:
 	void Render();
 	void Destroy();
 
-	int Getkey();
-	int Getinput();
-	int Getcommand();
+static int input;
+static int command;
+static int key;
+	
 private:
 	Timer* time = Timer::GetInstance();
-	int input;
-	int command;
-	int key;
 };
 

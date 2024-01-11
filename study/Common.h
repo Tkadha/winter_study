@@ -4,18 +4,18 @@
 #include <conio.h>
 #include <vector>
 
-#define BoardX 15
-#define BoardY 15
+const int BoardX = 15;
+const int BoardY = 15;
 
-#define UP 72
-#define DOWN 80
-#define LEFT 75
-#define RIGHT 77
-#define SPACE 32
-#define D 100
-#define ESCAPE 27
-#define ENTER 13
-#define WAVE 96
+const int  UP = 72;
+const int  DOWN = 80;
+const int  LEFT = 75;
+const int  RIGHT = 77;
+const int  SPACE = 32;
+const int  D = 100;
+const int  ESCAPE = 27;
+const int  ENTER = 13;
+const int  WAVE = 96;
 
 struct Pos {
 	int x;
@@ -25,11 +25,8 @@ struct Pos {
 void gotoxy(int x, int y);
 
 enum State {
-	State_Wall,
-	State_Player,
-	State_Player_attack,
-	State_Monster,
-	State_Empty
+	State_Player= 0,
+	State_Monster = 10000,
 };
 
 

@@ -1,37 +1,30 @@
 #pragma once
 #include "Common.h"
 #include "Input.h"
+#include "Object.h"
 
 
 
-
-
-class Player {
+class Player : public Object{
 public:
 	~Player();
 	Player();
 	Player(const Player& other);
 	static Player* GetInstance();
 
-	void init();
-	void Update();
-	void Render();
-	void Destroy();
+	virtual void init(int inid) override;
+	virtual void Update() override;
+	virtual void Render() override;
+	virtual void Destroy() override;
+	virtual int Getid() override;
 
-	Pos Getpos();
-	int Getkey();
-	bool DoAttack();
-	Pos GetAttackPoint();
+public:
+	static bool attack;
+	static Pos attackpoint;
 private:
 	static Player* instance;
-
-	Input in;
-	Pos pos;
-	Pos attackpoint;
 	int way;
-	bool attack;
 	int attack_count;
 	bool see_attack;
-	int command;
 };
 

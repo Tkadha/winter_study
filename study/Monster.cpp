@@ -1,4 +1,5 @@
 #include "Monster.h"
+int Monster::id = 1000;
 
 Monster::Monster()
 {
@@ -8,29 +9,31 @@ Monster::~Monster()
 {
 }
 
-void Monster::init(Pos position, int delay, int num)
+void Monster::init(int inid)
 {
-	
-	pos = position;
-	delay_count = delay * 3;
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> random_pos_x(1, BoardX - 2);
+	std::uniform_int_distribution<int> random_pos_y(1, BoardY - 2);
+	std::uniform_int_distribution<int> move_delay(1, 5);
+	pos = { random_pos_x(gen),random_pos_y(gen) };
+	delay_count = move_delay(gen) * 3;
 	move_count = 0;
-	id = num;
+	id = inid;
 	hp = 1;
 	range = 7;
 }
 
 void Monster::Update()
 {
-	if (move_count < delay_count)		
+	if (move_count < delay_count)
 		++move_count;
 	else
 	{
 		gotoxy(pos.x * 2, pos.y);
 		std::cout << "  ";
-		Pos P_pos = player->Getpos();
-		int P_to_M_range;
-		P_to_M_range = abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y);
-		if (range > P_to_M_range) {
+		Pos P_pos = Data::objects[Data::user_id]->Getpos();
+		if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {
 			if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {
 				if (pos.x < P_pos.x) {
 					if (pos.x < BoardX - 2)
@@ -100,7 +103,7 @@ void Monster::Update()
 			move_count = 0;
 		}
 	}
-	if(player->DoAttack())
+	if(Player::attack)
 		CheckHit();
 }
 
@@ -117,9 +120,16 @@ void Monster::Destroy()
 
 }
 
+int Monster::Getid()
+{
+	return id;
+}
+
+
+
 bool Monster::CheckHit()
 {
-	Pos playerpos = player->GetAttackPoint();
+	Pos playerpos = Player::attackpoint;
 	if ((pos.x == playerpos.x) && (pos.y == playerpos.y))
 		hp--;
 

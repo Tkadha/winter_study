@@ -1,6 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include "Common.h"
 #include "Game.h"
+#include "Input.h"
 
 
 int main() {
@@ -12,7 +13,7 @@ int main() {
 		game->Update();
 		game->Render();
 		Sleep(100);
-		if (game->IsNeedDestroy()) break;
+		if (Input::key == ESCAPE) break;
 	}
 
 	game->Destroy();

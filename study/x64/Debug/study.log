@@ -1,8 +1,6 @@
-﻿  Game.cpp
-  Input.cpp
+﻿  Data.cpp
+  Game.cpp
   Monster.cpp
-  Player.cpp
-  Timer.cpp
   main.cpp
   코드를 생성하고 있습니다...
   study.vcxproj -> C:\Users\admin\Documents\GitHub\winter_study\x64\Debug\study.exe
