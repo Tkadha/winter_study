@@ -96,7 +96,7 @@ void Player::Update() {
 			std::cout << "  ";
 		}
 	}
-	if (attack_count > 3)
+	if (attack_count > 2)
 	{
 		if (attack) {
 			switch (way) {
@@ -132,36 +132,46 @@ void Player::Render()
 		see_attack = false;
 		switch (way) {
 		case UP:
-			gotoxy(pos.x * 2, pos.y - 1);
 			if (pos.y != 1) {
-				std::cout << "¡ß";
+				gotoxy(pos.x * 2, pos.y - 1);
 				see_attack = true;
 			}
-
 			break;
 		case DOWN:
-			gotoxy(pos.x * 2, pos.y + 1);
 			if (pos.y != BoardY - 2) {
-				std::cout << "¡ß";
+				gotoxy(pos.x * 2, pos.y + 1);
 				see_attack = true;
 			}
 			break;
 		case LEFT:
-			gotoxy((pos.x - 1) * 2, pos.y);
 			if (pos.x != 1) {
-				std::cout << "¡ß";
+				gotoxy((pos.x - 1) * 2, pos.y);
 				see_attack = true;
 			}
 			break;
 		case RIGHT:
-			gotoxy((pos.x + 1) * 2, pos.y);
 			if (pos.x != BoardX - 2) {
-				std::cout << "¡ß";
+				gotoxy((pos.x + 1) * 2, pos.y);
 				see_attack = true;
 			}
 			break;
 		default:
 			break;
+		}
+		if (see_attack) {
+			switch (attack_count) {
+			case 0:
+				std::cout << "¢Ä";
+				break;
+			case 1:
+				std::cout << "¡Ü";
+				break;
+			case 2:
+				std::cout << "¢Å";
+				break;
+			default:
+				break;
+			}
 		}
 		attack_count++;
 	}
