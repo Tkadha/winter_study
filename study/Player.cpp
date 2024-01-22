@@ -33,7 +33,7 @@ Player::~Player()
 
 
 
-void Player::init(int inid) {
+void Player::Init(int inid) {
 	id = inid;
 }
 

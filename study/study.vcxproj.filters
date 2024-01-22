@@ -18,66 +18,138 @@
     <Filter Include="소스 파일\main\Game\object">
       <UniqueIdentifier>{4f6193fe-619c-43dc-91e3-caf242571a6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\main\Game\object\Monster">
+      <UniqueIdentifier>{bedae7d7-22d2-403f-8500-f259d1832506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main\data">
+      <UniqueIdentifier>{5d6a67eb-ac82-456d-88b6-e9297f424624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main\system">
+      <UniqueIdentifier>{fae37e7e-5dc9-4cab-bdb4-a84d7ced239c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main\skill">
+      <UniqueIdentifier>{340b8233-aa20-4e8d-978c-0ee8e93c4eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main\Game\object\Player">
+      <UniqueIdentifier>{9d3ca26f-fa1a-490f-a438-fd27e105576c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main\Game\object\NPC">
+      <UniqueIdentifier>{e52ef4be-ea2c-4231-b038-6d3dffb4aa84}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Object.cpp">
       <Filter>소스 파일\main\Game\object</Filter>
     </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일\main\Game\object</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\main\Game\object</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.cpp">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Common.cpp">
       <Filter>소스 파일\main\Game</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일\main</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\main\Game\object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>소스 파일\main\Game\object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>소스 파일\main\Game\object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>소스 파일\main\data</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>소스 파일\main\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\main\Game\object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>소스 파일\main\Game\object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Quest.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>소스 파일\main\Game\object\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="StoreNPC.cpp">
+      <Filter>소스 파일\main\Game\object\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="QuestNPC.cpp">
+      <Filter>소스 파일\main\Game\object\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Monster.h">
-      <Filter>소스 파일\main\Game\object</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>소스 파일\main\Game\object</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>소스 파일\main\Game\object</Filter>
-    </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>소스 파일\main\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>소스 파일\main\Game</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>소스 파일\main\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>소스 파일\main\Game\object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>소스 파일\main\Game\object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>소스 파일\main\Game\object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>소스 파일\main\data</Filter>
+    </ClInclude>
     <ClInclude Include="Input.h">
-      <Filter>소스 파일\main\Game</Filter>
+      <Filter>소스 파일\main\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>소스 파일\main\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>소스 파일\main\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>소스 파일\main\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\main\Game\object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>소스 파일\main\Game\object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>소스 파일\main\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Quest.h">
+      <Filter>소스 파일\main\system</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>소스 파일\main\Game</Filter>
+      <Filter>소스 파일\main\system</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>소스 파일\main\Game\object\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreNPC.h">
+      <Filter>소스 파일\main\Game\object\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="QuestNPC.h">
+      <Filter>소스 파일\main\Game\object\NPC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

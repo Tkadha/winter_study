@@ -6,7 +6,7 @@ public:
 	Object();
 	~Object();
 public:
-	virtual void init(int inid) = 0;
+	virtual void Init(int inid) = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 	virtual void Destroy() = 0;
@@ -17,7 +17,6 @@ private:
 protected:
 	int id;
 	Pos pos;
-
 };
 
 

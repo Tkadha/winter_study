@@ -9,7 +9,7 @@ Monster::~Monster()
 {
 }
 
-void Monster::init(int inid)
+void Monster::Init(int inid)
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -33,9 +33,9 @@ void Monster::Update()
 		gotoxy(pos.x * 2, pos.y);
 		std::cout << "  ";
 		Pos P_pos = Data::objects[Data::user_id]->Getpos();
-		if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {
-			if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {
-				if (pos.x < P_pos.x) {
+		if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {	//
+			if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {	//
+				if (pos.x < P_pos.x) {	//
 					if (pos.x < BoardX - 2)
 						pos.x++;
 				}

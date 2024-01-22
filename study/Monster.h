@@ -15,7 +15,7 @@ class Monster : public Object
 public:
 	Monster();
 	~Monster();
-	virtual void init(int inid) override;
+	virtual void Init(int inid) override;
 	virtual void Update() override;
 	virtual void Render() override;
 	virtual void Destroy() override;
@@ -23,11 +23,12 @@ public:
 
 	bool CheckHit();
 private:
+	static int id;
 	int delay_count;
 	int move_count;
-	static int id;
 	int hp;
 	int range;
+	int power;
 };
 
 

@@ -7,7 +7,7 @@ class Input
 public:
 	Input();
 	~Input();
-	void init();
+	void Init();
 	void Update();
 	void Render();
 	void Destroy();

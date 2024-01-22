@@ -12,7 +12,7 @@ public:
 	static Timer* GetInstance();
 
 	time_t Getfin();
-	void init();
+	void Init();
 	void Update();
 	void Render();
 	void Destroy();

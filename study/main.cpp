@@ -7,7 +7,7 @@
 int main() {
 	SetConsoleTitle(TEXT("Winter Study - Console Game"));
 	Game* game = new Game;
-	game->init();
+	game->Init();
 
 	while (true) {
 		game->Update();

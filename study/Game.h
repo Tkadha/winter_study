@@ -13,7 +13,7 @@ class Game {
 public:
 	Game();
 	~Game();	
-	void init();
+	void Init();
 	void Update();
 	void Render();
 	void Destroy();

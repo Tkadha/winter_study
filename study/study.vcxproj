@@ -24,6 +24,7 @@
     <ProjectGuid>{daf0081a-8fde-4fe6-9497-75f06dce6256}</ProjectGuid>
     <RootNamespace>study</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>winter_study</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -131,11 +132,20 @@
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Quest.cpp" />
+    <ClCompile Include="QuestNPC.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="StoreNPC.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,10 +153,19 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Ghost.h" />
+    <ClInclude Include="Goblin.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Quest.h" />
+    <ClInclude Include="QuestNPC.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="StoreNPC.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

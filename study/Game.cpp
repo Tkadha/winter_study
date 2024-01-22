@@ -10,17 +10,17 @@ Game::~Game()
 
 }
 
-void Game::init() {
+void Game::Init() {
 	board->init();
-	time->init();
-	input->init();
+	time->Init();
+	input->Init();
 
 
 	Data::objects.emplace_back(new Player);
-	Data::objects[Data::user_id]->init(Data::user_id);
+	Data::objects[Data::user_id]->Init(Data::user_id);
 	for (int i = 0; i < mob_count; ++i) {
 		Data::objects.emplace_back(new Monster);
-		Data::objects[Data::global_id]->init(Data::global_id);
+		Data::objects[Data::global_id]->Init(Data::global_id);
 		++Data::global_id;
 	}
 }

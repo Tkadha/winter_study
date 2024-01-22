@@ -33,7 +33,7 @@ void Timer::Setstart(time_t fin)
 	start = fin;
 }
 
-void Timer::init()
+void Timer::Init()
 {
 	start = time(NULL);
 	finish = time(NULL);

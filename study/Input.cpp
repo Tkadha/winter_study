@@ -12,7 +12,7 @@ Input::~Input()
 
 }
 
-void Input::init()
+void Input::Init()
 {
 	key = 0;
 	input = 0;

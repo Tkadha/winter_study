@@ -12,7 +12,7 @@ public:
 	Player(const Player& other);
 	static Player* GetInstance();
 
-	virtual void init(int inid) override;
+	virtual void Init(int inid) override;
 	virtual void Update() override;
 	virtual void Render() override;
 	virtual void Destroy() override;
@@ -26,5 +26,11 @@ private:
 	int way;
 	int attack_count;
 	bool see_attack;
+
+	int level;
+	int exp;
+	int hp, mp;
+	int gold;
+	int power;
 };
 
