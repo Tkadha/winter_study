@@ -4,7 +4,7 @@
 Player* Player::instance = nullptr;
 bool Player::attack = false;
 Pos Player::attackpoint;
-Player::Player()
+Player::Player() : level{1},exp{0},hp{10},mp{10},gold{0},power{1}
 {
 	pos.x = 1;
 	pos.y = 1;
@@ -175,6 +175,7 @@ void Player::Render()
 		}
 		attack_count++;
 	}
+	State_Render();
 	gotoxy(0, BoardY);
 }
 
@@ -186,5 +187,14 @@ void Player::Destroy()
 int Player::Getid()
 {
 	return id;
+}
+
+void Player::State_Render()
+{
+	gotoxy(0, BoardY + 2);
+	std::cout << "LEVEL: " << level << '\n';
+	std::cout << "EXP: " << exp << '\n';
+	std::cout << "HP: " << hp << " MP: " << mp <<'\n';
+	std::cout << "GOLD: " << gold << '\n';
 }
 

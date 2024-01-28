@@ -17,7 +17,7 @@ public:
 	virtual void Render() override;
 	virtual void Destroy() override;
 	virtual int Getid() override;
-
+	void State_Render();
 public:
 	static bool attack;
 	static Pos attackpoint;
