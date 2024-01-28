@@ -3,7 +3,18 @@
 #include "Input.h"
 #include "Object.h"
 
-
+enum Level {
+	Level_1 = 10,
+	Level_2 = 20,
+	Level_3 = 30,
+	Level_4 = 45,
+	Level_5 = 70,
+	Level_6 = 90,
+	Level_7 = 100,
+	Level_8 = 120,
+	Level_9 = 150,
+	Level_10 = 99999999,
+};
 
 class Player : public Object{
 public:

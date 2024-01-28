@@ -16,5 +16,4 @@ public:
 	static unsigned int global_id;
 
 private:
-
 };

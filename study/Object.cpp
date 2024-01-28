@@ -1,6 +1,10 @@
 #include "Object.h"
 
-Object::Object()
+Object::Object() : id{ 0 }, pos{ 0,0 }
+{
+}
+
+Object::Object(Pos p, int inid) : pos{ p } ,id{inid}
 {
 }
 
@@ -12,3 +16,4 @@ Pos Object::Getpos()
 {
 	return pos;
 }
+

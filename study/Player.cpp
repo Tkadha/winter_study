@@ -4,17 +4,13 @@
 Player* Player::instance = nullptr;
 bool Player::attack = false;
 Pos Player::attackpoint;
-Player::Player()
+Player::Player() : way { UP }, see_attack(false), attack_count{ 0 }
 {
 	pos.x = 1;
 	pos.y = 1;
-	way = UP;
-	attack = false;
-	see_attack = false;
-	attack_count = 0;
 }
 
-Player::Player(const Player& other)
+Player::Player(const Player& other) : way{ UP }, see_attack(false), attack_count{ 0 }
 {
 	
 }

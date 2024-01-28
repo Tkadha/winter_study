@@ -4,6 +4,7 @@ class Object
 {
 public:
 	Object();
+	Object(Pos p, int inid);
 	~Object();
 public:
 	virtual void Init(int inid) = 0;

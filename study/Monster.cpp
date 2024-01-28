@@ -1,15 +1,6 @@
 #include "Monster.h"
-int Monster::id = 1000;
 
-Monster::Monster()
-{
-}
-
-Monster::~Monster()
-{
-}
-
-void Monster::Init(int inid)
+Monster::Monster() : move_count{0},hp{1},range{5},power{1},invincibility{false},invincibility_time{0}
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -18,10 +9,15 @@ void Monster::Init(int inid)
 	std::uniform_int_distribution<int> move_delay(1, 5);
 	pos = { random_pos_x(gen),random_pos_y(gen) };
 	delay_count = move_delay(gen) * 3;
-	move_count = 0;
+}
+
+Monster::~Monster()
+{
+}
+
+void Monster::Init(int inid)
+{	
 	id = inid;
-	hp = 1;
-	range = 7;
 }
 
 void Monster::Update()
@@ -105,6 +101,10 @@ void Monster::Update()
 	}
 	if(Player::attack)
 		CheckHit();
+	if (invincibility)
+		++invincibility_time;
+	if (invincibility_time > 5)
+		invincibility = false;
 }
 
 void Monster::Render()
@@ -127,15 +127,14 @@ int Monster::Getid()
 
 
 
-bool Monster::CheckHit()
+void Monster::CheckHit()
 {
 	Pos playerpos = Player::attackpoint;
-	if ((pos.x == playerpos.x) && (pos.y == playerpos.y))
-		hp--;
-
-	if (hp < 1)
-		return true;
-	else
-		return false;
+	if(!invincibility)
+		if ((pos.x == playerpos.x) && (pos.y == playerpos.y)) {
+			hp--;
+			invincibility = true;
+		}
 }
+
 

@@ -3,9 +3,10 @@
 #include "Player.h"
 #include "Board.h"
 #include "Timer.h"
-#include "Monster.h"
 #include "Input.h"
 #include "Data.h"
+#include "Ghost.h"
+#include "Goblin.h"
 
 const int mob_count = 3;
 class Game {
