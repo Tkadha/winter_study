@@ -6,6 +6,7 @@
 
 int main() {
 	SetConsoleTitle(TEXT("Winter Study - Console Game"));
+	system("mode con: cols=150 lines=50");
 	Game* game = new Game;
 	game->Init();
 

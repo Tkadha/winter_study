@@ -4,8 +4,8 @@
 #include <conio.h>
 #include <vector>
 
-const int BoardX = 15;
-const int BoardY = 15;
+const int BoardX = 30;
+const int BoardY = 30;
 
 const int  UP = 72;
 const int  DOWN = 80;
