@@ -11,7 +11,7 @@ Board::~Board()
 
 void Board::init()
 {
-	gotoxy(0, 0);
+	/*gotoxy(0, 0);
 	for (int i = 0; i < BoardY; ++i) {
 		for (int j = 0; j < BoardX; ++j) {
 			if (i == 0 || j == 0 || i == BoardY - 1 || j == BoardX - 1) {
@@ -23,7 +23,7 @@ void Board::init()
 			}
 		}
 		std::cout << std::endl;
-	}
+	}*/
 }
 
 void Board::Update()
