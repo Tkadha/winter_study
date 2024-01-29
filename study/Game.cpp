@@ -14,8 +14,8 @@ void Game::Init() {
 	board->init();
 	time->Init();
 	input->Init();
-
-
+	quest->Init();
+	//Data::quests.emplace_back(new )
 	Data::objects.emplace_back(new Player);
 	Data::objects[Data::user_id]->Init(Data::user_id);
 	for (int i = 0; i < mob_count; ++i) {
@@ -34,6 +34,7 @@ void Game::Update() {
 	board->Update();
 	time->Update();
 	input->Update();
+	quest->Update();
 	for (Object* obj : Data::objects) {
 		obj->Update();
 	}
@@ -42,6 +43,7 @@ void Game::Update() {
 void Game::Render() {
 	board->Render();
 	time->Render();
+	quest->Render();
 	for (Object* obj : Data::objects) {
 		if (obj->Getid() == Data::user_id)
 			continue;

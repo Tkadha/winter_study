@@ -1,7 +1,9 @@
 #pragma once
 #include "Common.h"
 #include <string>
-
+#include <fstream>
+#include <vector>
+using namespace std;
 struct Reward {
 	int gold;
 	int exp;
@@ -9,8 +11,19 @@ struct Reward {
 
 class Quest
 {
+ public:
 	unsigned long long id;
 	Reward reward;
-	std::string script;	
+	string file;
+	vector<string> script;
+	void Init();
+	void Render();
+	void Update();
+ private:
+	std::ifstream questfile;
+	int line = 0;
+	int count = 0;
+	int open = 0;
+	int quest_id = 0;
 };
 

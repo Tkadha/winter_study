@@ -22,6 +22,7 @@ public:
 private:
 	Board* board = new Board;
 	Input* input = new Input;
+	Quest* quest = new Quest;
 	Timer* time = Timer::GetInstance();
 
 	//int board[BoardY][BoardX];
