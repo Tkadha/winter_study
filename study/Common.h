@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <conio.h>
 #include <vector>
+#include <fstream>
 
 const int BoardX = 30;
 const int BoardY = 30;
@@ -16,6 +17,9 @@ const int  D = 100;
 const int  ESCAPE = 27;
 const int  ENTER = 13;
 const int  WAVE = 96;
+const int  Q = 113;
+const int  E = 101;
+const int  W = 119;
 
 struct Pos {
 	int x;

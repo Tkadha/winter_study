@@ -1,0 +1,5 @@
+quest: catch goblin//catch 20 golin//reward: gold x 100 exp x 100.
+quest: gather tree//gather 30 tree.reward//gold x 50 exp x 50
+quest: catch ghost//catch 30 ghost//reward: gold x 200 exp x 200
+quest: gather goblin_ear//gather 20 goblin_ear//reward: gold x 300 exp x 300
+quest: gather ghost_soul//gather 20 ghost_soul//reward: gold x 400 exp x 400
