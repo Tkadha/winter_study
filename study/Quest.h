@@ -12,10 +12,13 @@ struct Reward {
 class Quest
 {
  public:
-	unsigned long long id;
-	Reward reward;
+	
+	Reward reward[5];
 	string file;
-	vector<string> script;
+	vector<string> questtitle;
+	vector<string> questscript;
+	vector<string> questreward;
+
 	void Init();
 	void Render();
 	void Update();
@@ -25,5 +28,8 @@ class Quest
 	int count = 0;
 	int open = 0;
 	int quest_id = 0;
+	int id = 0;
+	int check = 1;
+	string store;
 };
 

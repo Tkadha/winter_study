@@ -9,9 +9,37 @@ void Quest::Init()
 		while (!questfile.eof())
 		{
 			std::getline(questfile, file);
-			script.emplace_back(file);
+			if (check == 1) {
+				questtitle.emplace_back(file);
+			}
+			else if (check == 2) {
+				questscript.emplace_back(file);
+			}
+			else {
+				questreward.emplace_back(file);
+				check = 0;
+			}
+			check++;
+			
 		}
 		questfile.close();
+	}
+	check = 1;
+	questfile.open("reward.txt");
+	if (questfile.is_open())
+	{
+		while (!questfile.eof())
+		{
+			getline(questfile, store);
+			if (check % 2 == 1) {
+				reward[id].exp = stoi(store);
+			}
+			else {
+				reward[id].gold = stoi(store);
+				id++;
+			}
+			check++;
+		}
 	}
 }
 
@@ -20,7 +48,12 @@ void Quest::Render()
 	gotoxy(BoardX * 7/3, 10);
 	cout << "                                                                                  ";
 	gotoxy(BoardX * 7/3, 10);
-	cout << script[quest_id];
+	cout << questtitle[quest_id];
+	gotoxy(BoardX * 7 / 3, 11);
+	cout << questscript[quest_id];
+	gotoxy(BoardX * 7 / 3, 12);
+	cout << questreward[quest_id];
+
 }
 
 void Quest::Update()
@@ -35,7 +68,7 @@ void Quest::Update()
 			}
 		}
 		else if (Input::key == E) {
-			if(quest_id+1<script.size())
+			
 			quest_id++;
 		}
 		else if (Input::key == W) {
