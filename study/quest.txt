@@ -1,4 +1,4 @@
-quest: catch goblin
+quest: 고블린 잡기
 catch 20 goblin
 reward: gold x 100 exp x 100.
 quest: gather tree
