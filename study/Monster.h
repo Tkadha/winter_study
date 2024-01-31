@@ -28,8 +28,12 @@ protected:
 	int hp;
 	int range;
 	int power;
+
 	int invincibility_time;
 	bool invincibility;
+
+	bool regeneration;
+	int regeneration_time;
 };
 
 

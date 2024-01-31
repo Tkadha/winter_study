@@ -3,6 +3,8 @@
 Goblin::Goblin() : Monster()
 {
 	hp = 2;
+	gold = 100;
+	exp = 10;
 }
 
 Goblin::~Goblin()

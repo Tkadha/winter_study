@@ -2,6 +2,8 @@
 
 Ghost::Ghost() : Monster()
 {
+	gold = 50;
+	exp = 5;
 }
 
 Ghost::~Ghost()
