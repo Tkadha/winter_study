@@ -68,11 +68,11 @@ void Quest::Update()
 			}
 		}
 		else if (Input::key == E) {
-			
+			if(4>quest_id)
 			quest_id++;
 		}
 		else if (Input::key == W) {
-			
+			if(quest_id>0)
 			quest_id--;
 		}
 	}
