@@ -201,7 +201,6 @@ void Player::State_Render()
 	gotoxy(0, BoardY + 2);
 	std::cout << "LEVEL: " << level << '\n';
 	std::cout << "EXP: " << exp << '\n';
-	std::cout << "HP: " << hp << " MP: " << mp <<'\n';
+	std::cout << "HP: " << hp << " MP: " << mp << '\n';
 	std::cout << "GOLD: " << gold << '\n';
 }
-

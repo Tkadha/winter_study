@@ -53,24 +53,32 @@ void Monster::Update()
 			gotoxy(pos.x * 2, pos.y);
 			std::cout << "  ";
 			Pos P_pos = Data::objects[Data::user_id]->Getpos();
-			if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {	//
-				if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {	//
-					if (pos.x < P_pos.x) {	//
-						if (pos.x < BoardX - 2)
+			if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {	// 플레이어가 범위안에 있으면
+				if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {	// x값의 차이가 더 크다면
+					if (pos.x < P_pos.x) {	
+						if (pos.x < BoardX - 2) {
 							pos.x++;
+							way = Move_RIGHT;
+						}
 					}
 					else if (pos.x > P_pos.x) {
-						if (pos.x > 1)
+						if (pos.x > 1) {
 							pos.x--;
+							way = Move_LEFT;
+						}
 					}
 					else {
 						if (pos.y < P_pos.y) {
-							if (pos.y < BoardY - 2)
+							if (pos.y < BoardY - 2) {
 								pos.y++;
+								way = Move_DOWN;
+							}
 						}
 						else if (pos.y > P_pos.y) {
-							if (pos.y > 1)
+							if (pos.y > 1) {
 								pos.y--;
+								way = Move_UP;
+							}
 						}
 					}
 				}
@@ -99,8 +107,9 @@ void Monster::Update()
 			else {
 				std::random_device rd;
 				std::mt19937 gen(rd());
-				std::uniform_int_distribution<int> way(0, 3);
-				switch (way(gen)) {
+				std::uniform_int_distribution<int> ran_way(0, 3);
+				way = ran_way(gen);
+				switch (way) {
 				case Move_UP:
 					if (pos.y > 1)
 						pos.y--;
@@ -159,6 +168,27 @@ void Monster::CheckHit()
 		if ((pos.x == playerpos.x) && (pos.y == playerpos.y)) {
 			hp--;
 			invincibility = true;
+			move_count = 0;
+			switch (way) {
+			case Move_UP:
+				if (pos.y < BoardY - 2)
+					pos.y++;
+				break;
+			case Move_DOWN:
+				if (pos.y > 1)
+					pos.y--;
+				break;
+			case Move_LEFT:
+				if (pos.x < BoardX - 2)
+					pos.x++;
+				break;
+			case Move_RIGHT:
+				if (pos.x > 1)
+					pos.x--;
+				break;
+			default:
+				break;
+			}
 			if (hp < 1) {
 				Data::objects[Data::user_id]->Get_Gold(gold);
 				Data::objects[Data::user_id]->Get_Exp(exp);
