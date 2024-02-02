@@ -2,6 +2,8 @@
 
 Ghost::Ghost() : Monster()
 {
+	gold = 50;
+	exp = 5;
 }
 
 Ghost::~Ghost()
@@ -11,6 +13,8 @@ Ghost::~Ghost()
 void Ghost::Init(int inid)
 {
 	id = inid;
+	gotoxy(0, BoardY + 11);
+	std::cout << "G = Ghost";
 }
 
 void Ghost::Update()

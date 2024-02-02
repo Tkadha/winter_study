@@ -3,6 +3,8 @@
 Goblin::Goblin() : Monster()
 {
 	hp = 2;
+	gold = 100;
+	exp = 10;
 }
 
 Goblin::~Goblin()
@@ -12,6 +14,8 @@ Goblin::~Goblin()
 void Goblin::Init(int inid)
 {
 	id = inid;
+	gotoxy(0, BoardY + 10);
+	std::cout << "O = Goblin";
 }
 
 void Goblin::Update()

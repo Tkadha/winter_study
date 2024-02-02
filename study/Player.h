@@ -17,6 +17,8 @@ public:
 	virtual void Render() override;
 	virtual void Destroy() override;
 	virtual int Getid() override;
+	virtual void Get_Gold(int);
+	virtual void Get_Exp(int);
 	void State_Render();
 public:
 	static bool attack;
@@ -28,9 +30,7 @@ private:
 	bool see_attack;
 
 	int level;
-	int exp;
 	int hp, mp;
-	int gold;
 	int power;
 };
 

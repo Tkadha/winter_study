@@ -4,14 +4,14 @@
 Player* Player::instance = nullptr;
 bool Player::attack = false;
 Pos Player::attackpoint;
-Player::Player() : level{1},exp{0},hp{10},mp{10},gold{0},power{1}, way{ UP }, see_attack(false), attack_count{ 0 }
+Player::Player() : level{1},hp{10},mp{10},power{1}, way{ UP }, see_attack(false), attack_count{ 0 }
 {
 	pos.x = 1;
 	pos.y = 1;
 	
 }
 
-Player::Player(const Player& other) : level{ 1 }, exp{ 0 }, hp{ 10 }, mp{ 10 }, gold{ 0 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
+Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
 {
 	
 }
@@ -186,12 +186,21 @@ int Player::Getid()
 	return id;
 }
 
+void Player::Get_Gold(int g)
+{
+	gold += g;
+}
+
+void Player::Get_Exp(int e)
+{
+	exp += e;
+}
+
 void Player::State_Render()
 {
 	gotoxy(0, BoardY + 2);
 	std::cout << "LEVEL: " << level << '\n';
 	std::cout << "EXP: " << exp << '\n';
-	std::cout << "HP: " << hp << " MP: " << mp <<'\n';
+	std::cout << "HP: " << hp << " MP: " << mp << '\n';
 	std::cout << "GOLD: " << gold << '\n';
 }
-
