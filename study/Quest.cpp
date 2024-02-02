@@ -46,7 +46,7 @@ void Quest::Init()
 void Quest::Render()
 {
 	gotoxy(BoardX * 7/3, 10);
-	cout << "                                                                                  ";
+	cout << "                                                                        ";
 	gotoxy(BoardX * 7/3, 10);
 	cout << questtitle[quest_id];
 	gotoxy(BoardX * 7 / 3, 11);
