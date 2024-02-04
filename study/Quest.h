@@ -18,7 +18,7 @@ class Quest
 	vector<string> questtitle;
 	vector<string> questscript;
 	vector<string> questreward;
-
+	
 	void Init();
 	void Render();
 	void Update();

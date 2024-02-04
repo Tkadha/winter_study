@@ -15,6 +15,7 @@ void Game::Init() {
 	time->Init();
 	input->Init();
 	quest->Init();
+	quest_npc->Init();
 	//Data::quests.emplace_back(new )
 	Data::objects.emplace_back(new Player);
 	Data::objects[Data::user_id]->Init(Data::user_id);
@@ -35,6 +36,7 @@ void Game::Update() {
 	time->Update();
 	input->Update();
 	quest->Update();
+	quest_npc->Update();
 	for (Object* obj : Data::objects) {
 		obj->Update();
 	}
@@ -43,7 +45,11 @@ void Game::Update() {
 void Game::Render() {
 	board->Render();
 	time->Render();
-	quest->Render();
+	quest_npc->Render();
+	if (QuestNPC::open == 1) {
+		quest->Render();
+	}
+	
 	for (Object* obj : Data::objects) {
 		if (obj->Getid() == Data::user_id)
 			continue;

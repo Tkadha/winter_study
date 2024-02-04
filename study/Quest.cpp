@@ -59,15 +59,8 @@ void Quest::Render()
 void Quest::Update()
 {
 	if (Input::input) {
-		if (Input::key == Q) {
-			if (open == 0) {
-				open = 1;
-			}
-			else {
-				open = 0;
-			}
-		}
-		else if (Input::key == E) {
+		
+		if (Input::key == E) {
 			if(4>quest_id)
 			quest_id++;
 		}

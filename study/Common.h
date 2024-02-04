@@ -21,6 +21,7 @@ const int  Q = 113;
 const int  E = 101;
 const int  W = 119;
 
+
 struct Pos {
 	int x;
 	int y;
