@@ -1,6 +1,5 @@
 #include "Quest.h"
 #include "Input.h"
-
 void Quest::Init()
 {
 	questfile.open("quest.txt");
@@ -45,14 +44,21 @@ void Quest::Init()
 
 void Quest::Render()
 {
-	gotoxy(BoardX * 7/3, 10);
-	cout << "                                                                                  ";
-	gotoxy(BoardX * 7/3, 10);
-	cout << questtitle[quest_id];
-	gotoxy(BoardX * 7 / 3, 11);
-	cout << questscript[quest_id];
-	gotoxy(BoardX * 7 / 3, 12);
-	cout << questreward[quest_id];
+ if (state[quest_id] == 0) {
+	 gotoxy(BoardX * 7/3, 10);
+	 cout << "                                                                                  ";
+	 gotoxy(BoardX * 7 / 3, 11);
+	 cout << "                                                                                  ";
+	 gotoxy(BoardX * 7 / 3, 12);
+	 cout << "                                                                                  ";
+	
+	 gotoxy(BoardX * 7 / 3, 10);
+	 cout << questtitle[quest_id];
+	 gotoxy(BoardX * 7 / 3, 11);
+	 cout << questscript[quest_id];
+	 gotoxy(BoardX * 7 / 3, 12);
+	 cout << questreward[quest_id];
+ }
 
 }
 
@@ -61,12 +67,27 @@ void Quest::Update()
 	if (Input::input) {
 		
 		if (Input::key == E) {
-			if(4>quest_id)
-			quest_id++;
+			if (4 > quest_id) {
+				if (state[quest_id + 1] == 1) {
+					quest_id += 2;
+				}
+				else {
+					quest_id++;
+				}
+			}
 		}
 		else if (Input::key == W) {
-			if(quest_id>0)
-			quest_id--;
+			if (quest_id > 0) {
+				if (state[quest_id - 1] == 1) {
+					quest_id -=2;
+				}
+				else {
+					quest_id--;
+				}
+			}
+		}
+		else if (Input::key == P) {
+			state[quest_id] = 1;
 		}
 	}
 }

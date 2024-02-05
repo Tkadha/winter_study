@@ -20,6 +20,8 @@ const int  WAVE = 96;
 const int  Q = 113;
 const int  E = 101;
 const int  W = 119;
+const int  P = 112;
+const int  J = 106;
 
 
 struct Pos {
