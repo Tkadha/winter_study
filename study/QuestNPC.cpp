@@ -17,7 +17,7 @@ void QuestNPC::Update()
 	if (Input::input) {
 		if (Input::key == Q) {
 			if (open > 0) {
-				open--;
+				open = 0;
 				gotoxy(BoardX * 7 / 3, 10);
 				std::cout << "                                                                                  ";
 				gotoxy(BoardX * 7 / 3, 11);
@@ -26,7 +26,21 @@ void QuestNPC::Update()
 				std::cout << "                                                                                  ";
 			}
 			else {
-				open++;                                                        
+				open = 1;                                                        
+			}
+		}
+		else if (Input::key == J) {
+			if (open > 0) {
+				open = 0;
+				gotoxy(BoardX * 7 / 3, 10);
+				std::cout << "                                                                                  ";
+				gotoxy(BoardX * 7 / 3, 11);
+				std::cout << "                                                                                  ";
+				gotoxy(BoardX * 7 / 3, 12);
+				std::cout << "                                                                                  ";
+			}
+			else {
+				open = 2;
 			}
 		}
 	}

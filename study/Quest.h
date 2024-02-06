@@ -1,5 +1,6 @@
 #pragma once
 #include "Common.h"
+#include "Player.h"
 #include <string>
 #include <fstream>
 #include <vector>
@@ -19,9 +20,10 @@ class Quest
 	vector<string> questscript;
 	vector<string> questreward;
 	int state[5];
-	
+	Player* p = Player::GetInstance();
 	void Init();
 	void Render();
+	void Render2();
 	void Update();
  private:
 	std::ifstream questfile;
@@ -31,6 +33,8 @@ class Quest
 	int quest_id = 0;
 	int id = 0;
 	int check = 1;
+	int player_exp = 0;
+	int player_gold = 0;
 	string store;
 };
 

@@ -61,6 +61,18 @@ void Quest::Render()
  }
 
 }
+void Quest::Render2() {
+	for (int i = 0; i < 5; i++) {
+		if (state[i] == 1) {
+			gotoxy(BoardX * 7 / 3, 10);
+			cout << questtitle[i];
+			gotoxy(BoardX * 7 / 3, 11);
+			cout << questscript[i];
+			gotoxy(BoardX * 7 / 3, 12);
+			cout << questreward[i];
+		}
+	}
+}
 
 void Quest::Update()
 {
@@ -88,6 +100,17 @@ void Quest::Update()
 		}
 		else if (Input::key == P) {
 			state[quest_id] = 1;
+		}
+		else if (Input::key == K) {
+			player_exp = p->Getexp();
+			player_gold = p->Getgold();
+			for (int i = 0; i < 5; i++) {
+				if (state[i] == 1) {
+					p->Setexp(player_exp + reward[i].exp);
+					p->Setgold(player_gold + reward[i].gold);
+					break;
+				}
+			}
 		}
 	}
 }

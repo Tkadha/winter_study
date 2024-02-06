@@ -49,6 +49,9 @@ void Game::Render() {
 	if (QuestNPC::open == 1) {
 		quest->Render();
 	}
+	else if (QuestNPC::open == 2) {
+		quest->Render2();
+	}
 	
 	for (Object* obj : Data::objects) {
 		if (obj->Getid() == Data::user_id)
