@@ -18,6 +18,7 @@ void Game::Init() {
 	quest_npc->Init();
 	//Data::quests.emplace_back(new )
 	Data::objects.emplace_back(new Player);
+	Data::objects[Data::user_id] = Player::GetInstance();
 	Data::objects[Data::user_id]->Init(Data::user_id);
 	for (int i = 0; i < mob_count; ++i) {
 		Data::objects.emplace_back(new Ghost);

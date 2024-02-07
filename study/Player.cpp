@@ -5,20 +5,20 @@ Player* Player::instance = nullptr;
 bool Player::attack = false;
 Pos Player::attackpoint;
 
-
-Player::Player() : level{1},exp{0},hp{10},mp{10},gold{100},power{1}, way{ UP }, see_attack(false), attack_count{ 0 }
-
+Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
 {
 	pos.x = 1;
 	pos.y = 1;
-	
+	exp = 0;
+	gold = 100;
 }
 
-
-Player::Player(const Player& other) : level{ 1 }, exp{ 0 }, hp{ 10 }, mp{ 10 }, gold{ 100 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
-
+Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
 {
-	
+	pos.x = 1;
+	pos.y = 1;
+	exp = 0;
+	gold = 100;
 }
 
 Player* Player::GetInstance()
@@ -75,27 +75,24 @@ void Player::Update() {
 			break;
 		}
 		if (attack) {
+			gotoxy(attackpoint.x * 2, attackpoint.y);
+			std::cout << "  ";
 			switch (way) {
 			case UP:
 				attackpoint = { pos.x,pos.y - 1 };
-				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			case DOWN:
 				attackpoint = { pos.x,pos.y + 1 };
-				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			case LEFT:
 				attackpoint = { pos.x - 1,pos.y };
-				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			case RIGHT:
 				attackpoint = { pos.x + 1,pos.y };
-				gotoxy(attackpoint.x * 2, attackpoint.y);
 				break;
 			default:
 				break;
 			}
-			std::cout << "  ";
 		}
 	}
 	if (attack_count > 2)
@@ -191,16 +188,15 @@ int Player::Getid()
 	return id;
 }
 
-
-void Player::Setexp(int a)
+void Player::Get_Gold(int g)
 {
-	exp += a;
+	gold += g;
 }
 
-void Player::Setgold(int b) {
-	gold += b;
+void Player::Get_Exp(int e)
+{
+	exp += e;
 }
-
 
 void Player::State_Render()
 {

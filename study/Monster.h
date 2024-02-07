@@ -29,6 +29,7 @@ protected:
 	int range;
 	int power;
 	int way;
+	Player* p = Player::GetInstance();
 
 	int invincibility_time;
 	bool invincibility;
