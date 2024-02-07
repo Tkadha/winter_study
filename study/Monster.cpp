@@ -190,8 +190,8 @@ void Monster::CheckHit()
 				break;
 			}
 			if (hp < 1) {
-				Data::objects[Data::user_id]->Get_Gold(gold);
-				Data::objects[Data::user_id]->Get_Exp(exp);
+				p->Setexp(exp);
+				p->Setgold(gold);
 				regeneration = true;
 
 				//Data::objects.erase(Data::objects.begin() + id);
