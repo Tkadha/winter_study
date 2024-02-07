@@ -188,14 +188,14 @@ int Player::Getid()
 	return id;
 }
 
-void Player::Get_Gold(int g)
+void Player::Setexp(int a)
 {
-	gold += g;
+	gold += a;
 }
 
-void Player::Get_Exp(int e)
+void Player::Setgold(int b) 
 {
-	exp += e;
+	exp += b;
 }
 
 void Player::State_Render()
