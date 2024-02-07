@@ -17,8 +17,9 @@ public:
 	virtual void Render() override;
 	virtual void Destroy() override;
 	virtual int Getid() override;
-	virtual void Get_Gold(int);
-	virtual void Get_Exp(int);
+
+	void Setexp(int a);
+	void Setgold(int b);
 	void State_Render();
 public:
 	static bool attack;
