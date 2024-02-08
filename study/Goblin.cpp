@@ -14,8 +14,6 @@ Goblin::~Goblin()
 void Goblin::Init(int inid)
 {
 	id = inid;
-	gotoxy(0, BoardY + 10);
-	std::cout << "O = Goblin";
 }
 
 void Goblin::Update()

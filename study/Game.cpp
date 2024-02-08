@@ -20,13 +20,14 @@ void Game::Init() {
 	Data::objects.emplace_back(new Player);
 	Data::objects[Data::user_id] = Player::GetInstance();
 	Data::objects[Data::user_id]->Init(Data::user_id);
+	Object* Temp;
 	for (int i = 0; i < mob_count; ++i) {
-		Data::objects.emplace_back(new Ghost);
+		Temp = new Ghost;
+		Data::objects.emplace_back(Temp);
 		Data::objects[Data::global_id]->Init(Data::global_id);
 		++Data::global_id;
-	}
-	for (int i = 0; i < mob_count; ++i) {
-		Data::objects.emplace_back(new Goblin);
+		Temp = new Goblin;
+		Data::objects.emplace_back(Temp);
 		Data::objects[Data::global_id]->Init(Data::global_id);
 		++Data::global_id;
 	}

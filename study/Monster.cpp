@@ -194,7 +194,6 @@ void Monster::CheckHit()
 				p->Setgold(gold);
 				regeneration = true;
 
-				//Data::objects.erase(Data::objects.begin() + id);
 			}
 		}
 }

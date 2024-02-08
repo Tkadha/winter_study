@@ -11,7 +11,10 @@ Board::~Board()
 
 void Board::init()
 {
-
+	gotoxy(0, BoardY + 10);
+	std::cout << "O = Goblin";
+	gotoxy(0, BoardY + 11);
+	std::cout << "G = Ghost";
 }
 
 void Board::Update()
