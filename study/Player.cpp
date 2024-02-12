@@ -5,20 +5,24 @@ Player* Player::instance = nullptr;
 bool Player::attack = false;
 Pos Player::attackpoint;
 
-Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
+Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, 
+see_attack{ false }, attack_count{ 0 }, skill_on{ false },skill_count{0}
 {
 	pos.x = 1;
 	pos.y = 1;
 	exp = 0;
 	gold = 100;
+	skill.Set_Center(pos);
 }
 
-Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, see_attack(false), attack_count{ 0 }
+Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, 
+see_attack{ false }, attack_count{ 0 }, skill_on{ false }, skill_count{ 0 }
 {
 	pos.x = 1;
 	pos.y = 1;
 	exp = 0;
 	gold = 100;
+	skill.Set_Center(pos);
 }
 
 Player* Player::GetInstance()
@@ -68,8 +72,14 @@ void Player::Update() {
 		case SPACE:		// 상호작용/확인
 			break;
 		case D:			// 공격
+			if (skill_on) break;
 			if (!attack)
 				attack = true;
+			break;
+		case S:			// 스킬 공격
+			if (attack) break;
+			if (!skill_on)
+				skill_on = true;
 			break;
 		default:
 			break;
@@ -119,6 +129,16 @@ void Player::Update() {
 		}
 		attack_count = 0;
 		attack = false;
+	}
+	if (skill_on) {
+		skill.Erase_Render();
+		skill.Set_Center(pos);
+		skill.Set_Hit_Box();
+		++skill_count;
+	}
+	if (skill_count > 2) {
+		skill_on = false;
+		skill_count = 0;
 	}
 }
 
@@ -173,6 +193,9 @@ void Player::Render()
 			}
 		}
 		attack_count++;
+	}
+	if (skill_on) {
+		skill.Render();
 	}
 	State_Render();
 	gotoxy(0, BoardY);

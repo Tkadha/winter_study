@@ -23,7 +23,7 @@ const int  W = 119;
 const int  P = 112;
 const int  J = 106;
 const int  K = 107;
-
+const int  S = 115;
 
 struct Pos {
 	int x;

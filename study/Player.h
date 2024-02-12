@@ -2,7 +2,7 @@
 #include "Common.h"
 #include "Input.h"
 #include "Object.h"
-
+#include "Skill.h"
 
 
 class Player : public Object{
@@ -33,5 +33,9 @@ private:
 	int level;
 	int hp, mp;
 	int power;
+
+	Skill skill;
+	bool skill_on;
+	int skill_count;
 };
 
