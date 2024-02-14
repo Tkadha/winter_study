@@ -21,9 +21,11 @@ public:
 	void Setexp(int a);
 	void Setgold(int b);
 	void State_Render();
+	Skill Get_Skill();
 public:
 	static bool attack;
 	static Pos attackpoint;
+	static bool skill_on;
 private:
 	static Player* instance;
 	int way;
@@ -35,7 +37,6 @@ private:
 	int power;
 
 	Skill skill;
-	bool skill_on;
 	int skill_count;
 };
 

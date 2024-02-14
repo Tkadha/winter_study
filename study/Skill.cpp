@@ -1,6 +1,6 @@
 #include "Skill.h"
 
-Skill::Skill() : range{ 1 }, skill_type{ Skill_type::Circle } , skill_count{0}
+Skill::Skill() : range{ 1 }, skill_type{ Skill_type::Cross } , skill_count{0}
 {
 	Set_Hit_Box();
 }
@@ -40,6 +40,7 @@ void Skill::Set_Hit_Box()
 		for (int i = center.y - range; i <= center.y + range; ++i) {
 			for (int j = center.x - range; j <= center.x + range; ++j) {
 				if ((i == center.y) || (j == center.x)) continue;
+				if ((i < 1) || (i > BoardY - 1) || (j < 1) || (j > BoardX - 1)) continue;
 				Pos hit_box = { j,i };
 				hit_point.emplace_back(hit_box);
 			}
@@ -47,18 +48,31 @@ void Skill::Set_Hit_Box()
 	}
 	else if (skill_type == Skill_type::Cross) {
 		for (int i = center.y - range; i <= center.y + range; ++i) {
-			for (int j = center.x - range; j <= center.x + range; ++j) {
-				
-			}
+			if (i == center.y) continue;
+			if ((i < 1) || (i > BoardY - 1)) continue;
+			Pos hit_box = { center.x,i };
+			hit_point.emplace_back(hit_box);
+		}
+		for (int i = center.x - range; i <= center.x + range; ++i) {
+			if (i == center.x) continue;
+			if ((i < 1) || (i > BoardX - 1)) continue;
+			Pos hit_box = { i,center.y };
+			hit_point.emplace_back(hit_box);
 		}
 	}
 	else if (skill_type == Skill_type::Circle) {
 		for (int i = center.y - range; i <= center.y + range; ++i) {
 			for (int j = center.x - range; j <= center.x + range; ++j) {
 				if ((i == center.y) && (j == center.x)) continue;
+				if ((i < 1) || (i > BoardY - 1) || (j < 1) || (j > BoardX - 1)) continue;
 				Pos hit_box = { j,i };
 				hit_point.emplace_back(hit_box);
 			}
 		}
 	}
+}
+
+std::vector<Pos> Skill::Get_Hit_Point()
+{
+	return hit_point;
 }

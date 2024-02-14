@@ -10,6 +10,11 @@ enum Move {
 	Move_RIGHT,
 };
 
+enum Attack_Type {
+	Type_Attack,
+	Type_Skill
+};
+
 class Monster : public Object
 {
 public:
@@ -21,7 +26,7 @@ public:
 	virtual void Destroy();
 	virtual int Getid();
 
-	void CheckHit();
+	void CheckHit(int);
 protected:
 	int delay_count;
 	int move_count;

@@ -133,7 +133,9 @@ void Monster::Update()
 			}
 		}
 		if (Player::attack)
-			CheckHit();
+			CheckHit(Type_Attack);
+		if(Player::skill_on)
+			CheckHit(Type_Skill);
 		if (invincibility)
 			++invincibility_time;
 		if (invincibility_time > 10)
@@ -161,41 +163,52 @@ int Monster::Getid()
 
 
 
-void Monster::CheckHit()
+void Monster::CheckHit(int type)
 {
-	Pos playerpos = Player::attackpoint;
-	if(!invincibility)
+	if (invincibility) return;
+	bool hit = false;
+	if (type == Type_Attack) {
+		Pos playerpos = Player::attackpoint;
 		if ((pos.x == playerpos.x) && (pos.y == playerpos.y)) {
-			hp--;
-			invincibility = true;
-			move_count = 0;
-			switch (way) {
-			case Move_UP:
-				if (pos.y < BoardY - 2)
-					pos.y++;
-				break;
-			case Move_DOWN:
-				if (pos.y > 1)
-					pos.y--;
-				break;
-			case Move_LEFT:
-				if (pos.x < BoardX - 2)
-					pos.x++;
-				break;
-			case Move_RIGHT:
-				if (pos.x > 1)
-					pos.x--;
-				break;
-			default:
-				break;
-			}
-			if (hp < 1) {
-				p->Setexp(exp);
-				p->Setgold(gold);
-				regeneration = true;
-
-			}
+			hit = true;
 		}
+	}
+	else if (type == Type_Skill) {
+		Skill skill = p->Get_Skill();
+		std::vector<Pos> points = skill.Get_Hit_Point();
+		for (Pos point : points)
+			if ((pos.x == point.x) && (pos.y == point.y))
+				hit = true;			
+	}
+	if (!hit) return;
+	hp--;
+	invincibility = true;
+	move_count = 0;
+	switch (way) {
+	case Move_UP:
+		if (pos.y < BoardY - 2)
+			pos.y++;
+		break;
+	case Move_DOWN:
+		if (pos.y > 1)
+			pos.y--;
+		break;
+	case Move_LEFT:
+		if (pos.x < BoardX - 2)
+			pos.x++;
+		break;
+	case Move_RIGHT:
+		if (pos.x > 1)
+			pos.x--;
+		break;
+	default:
+		break;
+	}
+	if (hp < 1) {
+		p->Setexp(exp);
+		p->Setgold(gold);
+		regeneration = true;
+	}
 }
 
 
