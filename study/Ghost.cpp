@@ -17,6 +17,7 @@ void Ghost::Init(int inid)
 
 void Ghost::Update()
 {
+
 	Monster::Update();
 }
 

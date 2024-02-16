@@ -17,6 +17,7 @@ void Skill::Set_Center(Pos obj_pos)
 
 void Skill::Render()
 {
+	Erase_Render();
 	for (Pos pos : hit_point)
 	{
 		gotoxy(pos.x*2, pos.y);
@@ -84,4 +85,9 @@ void Skill::Set_Hit_Box()
 std::vector<Pos> Skill::Get_Hit_Point()
 {
 	return hit_point;
+}
+
+void Skill::Set_Type(Skill_type type)
+{
+	skill_type = type;
 }

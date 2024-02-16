@@ -19,6 +19,7 @@ public:
 	void Erase_Render();
 	void Set_Hit_Box();
 	std::vector<Pos> Get_Hit_Point();
+	void Set_Type(Skill_type);
 private:
 	Skill_type skill_type;
 	int range;

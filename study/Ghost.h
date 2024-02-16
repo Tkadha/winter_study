@@ -1,5 +1,6 @@
 #pragma once
 #include "Monster.h"
+#include "Skill.h"
 class Ghost : public Monster
 {
 public:
@@ -12,6 +13,5 @@ public:
 	virtual void Destroy() final;
 
 private:
-    int skill_delay;
 };
 

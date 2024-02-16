@@ -145,10 +145,7 @@ void Monster::Update()
 
 void Monster::Render()
 {
-	if (hp > 0) {
-		gotoxy(pos.x * 2, pos.y);
-		std::cout << "ес";
-	}
+
 }
 
 void Monster::Destroy()

@@ -132,7 +132,6 @@ void Player::Update() {
 		attack = false;
 	}
 	if (skill_on) {
-		skill.Erase_Render();
 		skill.Set_Center(pos);
 		skill.Set_Hit_Box();
 		++skill_count;
