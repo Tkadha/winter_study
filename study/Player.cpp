@@ -6,7 +6,7 @@ bool Player::attack = false;
 bool Player::skill_on = false;
 Pos Player::attackpoint;
 
-Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, 
+Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP },
 see_attack{ false }, attack_count{ 0 },skill_count{0}
 {
 	pos.x = 1;
@@ -16,7 +16,7 @@ see_attack{ false }, attack_count{ 0 },skill_count{0}
 	skill.Set_Center(pos);
 }
 
-Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, power{ 1 }, way{ UP }, 
+Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP },
 see_attack{ false }, attack_count{ 0 }, skill_count{ 0 }
 {
 	pos.x = 1;
@@ -140,6 +140,25 @@ void Player::Update() {
 		skill_on = false;
 		skill_count = 0;
 	}
+	if (invincibility) {
+		++invincibility_time;
+		if (invincibility_time > 30) {
+			invincibility_time = 0;
+			invincibility = false;
+		}
+		return;
+	}
+	/*for (Object* obj : Data::objects) {
+		if (obj->Getid() == Data::user_id)
+			continue;
+		else {
+			Pos mob_pos = obj->Getpos();
+			if (pos == mob_pos) {
+				this->Set_Hp(obj->Getpower());
+			}
+		}
+			
+	}*/
 }
 
 void Player::Render()
@@ -221,13 +240,21 @@ void Player::Setgold(int b)
 	exp += b;
 }
 
+void Player::Set_Hp(int h)
+{
+	if (invincibility) return;
+	hp -= h;
+	invincibility = true;
+	if (hp < 0) hp = 0;
+}
+
 void Player::State_Render()
 {
 	gotoxy(0, BoardY + 2);
-	std::cout << "LEVEL: " << level << '\n';
-	std::cout << "EXP: " << exp << '\n';
-	std::cout << "HP: " << hp << " MP: " << mp << '\n';
-	std::cout << "GOLD: " << gold << '\n';
+	std::cout << "LEVEL: " << level << "    " << '\n';
+	std::cout << "EXP: " << exp << "    " << '\n';
+	std::cout << "HP: " << hp << " MP: " << mp <<"    "<< '\n';
+	std::cout << "GOLD: " << gold << "    " << '\n';
 }
 
 Skill Player::Get_Skill()

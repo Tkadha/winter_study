@@ -12,6 +12,7 @@ public:
 	virtual void Destroy() = 0;
 	virtual int Getid() = 0;
 	virtual Pos Getpos();
+	virtual int Getpower();
 	virtual void Get_Gold(int);
 	virtual void Get_Exp(int);
 private:
@@ -21,6 +22,10 @@ protected:
 	int gold;
 	int id;
 	Pos pos;
+	int power;
+
+	int invincibility_time;
+	bool invincibility;
 };
 
 

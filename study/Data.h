@@ -9,7 +9,6 @@ public:
 	Data();
 	~Data();
 	static std::vector<Object* > objects;
-	static std::vector<Quest* > quests;
 	static std::vector<Item* > items;
 	static std::vector<Item* > inventorys;
 	static unsigned int user_id;

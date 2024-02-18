@@ -11,6 +11,7 @@ Game::~Game()
 }
 
 void Game::Init() {
+
 	board->init();
 	time->Init();
 	input->Init();

@@ -21,12 +21,13 @@ public:
 	void Destroy();
 
 private:
+	
 	Board* board = new Board;
 	Input* input = new Input;
 	Quest* quest = new Quest;
 	QuestNPC* quest_npc = new QuestNPC;
 	Timer* time = Timer::GetInstance();
-
+	
 	//int board[BoardY][BoardX];
 };
 

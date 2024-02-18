@@ -1,7 +1,6 @@
 #include "Monster.h"
 
-Monster::Monster() : move_count{0},hp{1},range{5},power{1},invincibility{false},invincibility_time{0}
-, regeneration{ false }, regeneration_time{ 0 }
+Monster::Monster() : move_count{0},hp{1},range{5}, regeneration{ false }, regeneration_time{ 0 }
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -39,108 +38,112 @@ void Monster::Update()
 
 			regeneration = false;
 			regeneration_time = 0;
-			if (exp == 10)
+			if (exp == 10)	// 몬스터 종류 구분
 				hp = 2;
 			else
 				hp = 1;
 		}
+		return;
 	}
-	else {
-		if (move_count < delay_count)
-			++move_count;
-		else
-		{
-			gotoxy(pos.x * 2, pos.y);
-			std::cout << "  ";
-			Pos P_pos = Data::objects[Data::user_id]->Getpos();
-			if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {	// 플레이어가 범위안에 있으면
-				if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {	// x값의 차이가 더 크다면
-					if (pos.x < P_pos.x) {	
-						if (pos.x < BoardX - 2) {
-							pos.x++;
-							way = Move_RIGHT;
-						}
+	if (move_count < delay_count)
+		++move_count;
+	else
+	{
+		gotoxy(pos.x * 2, pos.y);
+		std::cout << "  ";
+		Pos P_pos = Data::objects[Data::user_id]->Getpos();
+		if (range > abs(pos.x - P_pos.x) + abs(pos.y - P_pos.y)) {	// 플레이어가 범위안에 있으면
+			if (abs(pos.x - P_pos.x) > abs(pos.y - P_pos.y)) {	// x값의 차이가 더 크다면
+				if (pos.x < P_pos.x) {
+					if (pos.x < BoardX - 2) {
+						pos.x++;
+						way = Move_RIGHT;
 					}
-					else if (pos.x > P_pos.x) {
-						if (pos.x > 1) {
-							pos.x--;
-							way = Move_LEFT;
-						}
-					}
-					else {
-						if (pos.y < P_pos.y) {
-							if (pos.y < BoardY - 2) {
-								pos.y++;
-								way = Move_DOWN;
-							}
-						}
-						else if (pos.y > P_pos.y) {
-							if (pos.y > 1) {
-								pos.y--;
-								way = Move_UP;
-							}
-						}
+				}
+				else if (pos.x > P_pos.x) {
+					if (pos.x > 1) {
+						pos.x--;
+						way = Move_LEFT;
 					}
 				}
 				else {
 					if (pos.y < P_pos.y) {
-						if (pos.y < BoardY - 2)
+						if (pos.y < BoardY - 2) {
 							pos.y++;
+							way = Move_DOWN;
+						}
 					}
 					else if (pos.y > P_pos.y) {
-						if (pos.y > 1)
+						if (pos.y > 1) {
 							pos.y--;
-					}
-					else {
-						if (pos.x < P_pos.x) {
-							if (pos.x < BoardX - 2)
-								pos.x++;
-						}
-						else if (pos.x > P_pos.x) {
-							if (pos.x > 1)
-								pos.x--;
+							way = Move_UP;
 						}
 					}
 				}
-				move_count = 0;
 			}
 			else {
-				std::random_device rd;
-				std::mt19937 gen(rd());
-				std::uniform_int_distribution<int> ran_way(0, 3);
-				way = ran_way(gen);
-				switch (way) {
-				case Move_UP:
-					if (pos.y > 1)
-						pos.y--;
-					break;
-				case Move_DOWN:
+				if (pos.y < P_pos.y) {
 					if (pos.y < BoardY - 2)
 						pos.y++;
-					break;
-				case Move_LEFT:
-					if (pos.x > 1)
-						pos.x--;
-					break;
-				case Move_RIGHT:
-					if (pos.x < BoardX - 2)
-						pos.x++;
-					break;
-				default:
-					break;
 				}
-				move_count = 0;
+				else if (pos.y > P_pos.y) {
+					if (pos.y > 1)
+						pos.y--;
+				}
+				else {
+					if (pos.x < P_pos.x) {
+						if (pos.x < BoardX - 2)
+							pos.x++;
+					}
+					else if (pos.x > P_pos.x) {
+						if (pos.x > 1)
+							pos.x--;
+					}
+				}
 			}
+			move_count = 0;
 		}
-		if (Player::attack)
-			CheckHit(Type_Attack);
-		if(Player::skill_on)
-			CheckHit(Type_Skill);
-		if (invincibility)
-			++invincibility_time;
-		if (invincibility_time > 10)
-			invincibility = false;
+		else {	// 범위 밖이라면 랜덤이동
+			std::random_device rd;
+			std::mt19937 gen(rd());
+			std::uniform_int_distribution<int> ran_way(0, 3);
+			way = ran_way(gen);
+			switch (way) {
+			case Move_UP:
+				if (pos.y > 1)
+					pos.y--;
+				break;
+			case Move_DOWN:
+				if (pos.y < BoardY - 2)
+					pos.y++;
+				break;
+			case Move_LEFT:
+				if (pos.x > 1)
+					pos.x--;
+				break;
+			case Move_RIGHT:
+				if (pos.x < BoardX - 2)
+					pos.x++;
+				break;
+			default:
+				break;
+			}
+			move_count = 0;
+		}
 	}
+	Pos P_pos = Data::objects[Data::user_id]->Getpos();
+	if (P_pos == pos) {	// 위치가 같으면 몸통박치기
+		p->Set_Hp(power);
+	}
+	if (Player::attack)
+		CheckHit(Type_Attack);
+	if (Player::skill_on)
+		CheckHit(Type_Skill);
+	if (invincibility)
+		++invincibility_time;
+	if (invincibility_time > 10)
+		invincibility = false;
+	
 }
 
 void Monster::Render()

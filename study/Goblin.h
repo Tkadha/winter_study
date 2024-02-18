@@ -11,6 +11,5 @@ public:
 	virtual void Render() final;
 	virtual void Destroy() final;
 
-	
 };
 

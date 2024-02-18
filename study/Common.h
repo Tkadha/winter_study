@@ -28,6 +28,10 @@ const int  S = 115;
 struct Pos {
 	int x;
 	int y;
+
+	bool operator==(Pos& other) const {
+		return (x == other.x) && (y == other.y);
+	}
 };
 
 void gotoxy(int x, int y);
