@@ -1,4 +1,5 @@
 #pragma once
+#
 #include "Common.h"
 #include "Player.h"
 #include "Board.h"
@@ -8,6 +9,7 @@
 #include "Ghost.h"
 #include "Goblin.h"
 #include "QuestNPC.h"
+#include "Item.h"
 
 const int mob_count = 3;
 class Game {
@@ -26,7 +28,11 @@ private:
 	Quest* quest = new Quest;
 	QuestNPC* quest_npc = new QuestNPC;
 	Timer* time = Timer::GetInstance();
-
+	Item* store = new Item;
+	std::ifstream callitem;
+	string item_name;
+	string file;
+	int check = 0;
 	//int board[BoardY][BoardX];
 };
 

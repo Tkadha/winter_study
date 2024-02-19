@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <fstream>
+
 
 enum Item_Code{
 	Hp_low_potion,
@@ -39,11 +41,21 @@ enum Item_Code{
 
 class Item
 {
+public:
+	Item();
+	~Item();
+	void Init();
+	void Update();
+	void Render();
+	void Destroy();
+	void Get_Name(std::string a);
+	void Get_Price(int a);
+	void Get_Ability(int a);
+private:
 	Item_Code id;
-	std::string name;
-	int power;
-	int hp;
-	int heal;
-	int price;
+	std::string item_name;
+	int item_price;
+	int item_ability;
+	
 };
 
