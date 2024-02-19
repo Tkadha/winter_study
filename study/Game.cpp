@@ -17,6 +17,7 @@ void Game::Init() {
 	input->Init();
 	quest->Init();
 	quest_npc->Init();
+	store_npc->Init();
 	//Data::quests.emplace_back(new )
 	Data::objects.emplace_back(new Player);
 	Data::objects[Data::user_id] = Player::GetInstance();
@@ -40,6 +41,7 @@ void Game::Update() {
 	input->Update();
 	quest->Update();
 	quest_npc->Update();
+	store_npc->Update();
 	for (Object* obj : Data::objects) {
 		obj->Update();
 	}
@@ -54,6 +56,12 @@ void Game::Render() {
 	}
 	else if (QuestNPC::open == 2) {
 		quest->Render2();
+	}
+	if (StoreNPC::market_open == 1) {
+		store->Render();
+	}
+	else if (StoreNPC::market_open == 2) {
+		store->RenderSell();
 	}
 	
 	for (Object* obj : Data::objects) {

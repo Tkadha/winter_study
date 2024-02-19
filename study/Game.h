@@ -8,7 +8,8 @@
 #include "Ghost.h"
 #include "Goblin.h"
 #include "QuestNPC.h"
-
+#include "StoreNPC.h"
+#include "Store.h"
 const int mob_count = 3;
 class Game {
 
@@ -25,7 +26,9 @@ private:
 	Board* board = new Board;
 	Input* input = new Input;
 	Quest* quest = new Quest;
+	Store* store = new Store;
 	QuestNPC* quest_npc = new QuestNPC;
+	StoreNPC* store_npc = new StoreNPC;
 	Timer* time = Timer::GetInstance();
 	
 	//int board[BoardY][BoardX];

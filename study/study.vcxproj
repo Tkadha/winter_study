@@ -145,6 +145,7 @@
     <ClCompile Include="Quest.cpp" />
     <ClCompile Include="QuestNPC.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="Store.cpp" />
     <ClCompile Include="StoreNPC.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="Quest.h" />
     <ClInclude Include="QuestNPC.h" />
     <ClInclude Include="Skill.h" />
+    <ClInclude Include="Store.h" />
     <ClInclude Include="StoreNPC.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
