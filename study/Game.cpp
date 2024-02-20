@@ -29,7 +29,7 @@ void Game::Init() {
 		Data::objects[Data::global_id]->Init(Data::global_id);
 		++Data::global_id;
 	}
-	
+	Item* store = nullptr;
 	callitem.open("itemname.txt");
 	if (callitem.is_open())
 	{
@@ -38,6 +38,8 @@ void Game::Init() {
 			
 			std::getline(callitem, file);
 			if (check == 0) {
+				store = new Item;
+
 				store->Get_Name(file);
 				check++;
 			}
@@ -49,7 +51,7 @@ void Game::Init() {
 				store->Get_Ability(stoi(file));
 				check = 0;
 
-				
+				Data::items.emplace_back(store);
 			}
 
 		}

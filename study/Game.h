@@ -28,7 +28,7 @@ private:
 	Quest* quest = new Quest;
 	QuestNPC* quest_npc = new QuestNPC;
 	Timer* time = Timer::GetInstance();
-	Item* store = new Item;
+	
 	std::ifstream callitem;
 	string item_name;
 	string file;
