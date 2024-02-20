@@ -13,6 +13,8 @@ public:
 	void Update();
 	void Render();
 	void In_Item(Item*);
+	void Out_Item(int a);
+	int Get_Item_Price(int a);
 	
 private:
 	std::vector<std::pair<Item*, int>> storage;	// 아이템 정보, 갯수

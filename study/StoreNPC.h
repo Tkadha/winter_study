@@ -1,5 +1,6 @@
 #pragma once
 #include "NPC.h"
+#include "Data.h"
 class StoreNPC : public NPC
 {
 public:

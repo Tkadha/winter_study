@@ -20,9 +20,19 @@ void StoreNPC::Update()
 				market_open = 1;
 			}
 			else if (market_open == 1) {
+				for (int i = 0; i < Data::items.size(); i++) {
+					gotoxy(BoardX * 7 / 2, 5 + i);
+					std::cout << "                             ";
+				}
 				market_open = 2;
 			}
 			else {
+				for (int i = 0; i < Data::items.size(); i++) {
+					gotoxy(BoardX * 7 / 3, 5 + i);
+					std::cout << "                             ";
+				}
+				gotoxy(BoardX * 6 / 3, 5 + arrow);
+				std::cout << "  ";
 				market_open = 0;
 			}
 		}

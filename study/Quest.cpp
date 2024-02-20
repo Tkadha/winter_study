@@ -46,18 +46,18 @@ void Quest::Render()
 {
 
  if (state[quest_id] == 0) {
-	 gotoxy(BoardX * 7/3, 10);
+	 gotoxy(BoardX * 7/3, 40);
 	 cout << "                                                                         ";
-	 gotoxy(BoardX * 7 / 3, 11);
+	 gotoxy(BoardX * 7 / 3, 41);
 	 cout << "                                                                         ";
-	 gotoxy(BoardX * 7 / 3, 12);
+	 gotoxy(BoardX * 7 / 3, 42);
 	 cout << "                                                                         ";
 	
-	 gotoxy(BoardX * 7 / 3, 10);
+	 gotoxy(BoardX * 7 / 3, 40);
 	 cout << questtitle[quest_id];
-	 gotoxy(BoardX * 7 / 3, 11);
+	 gotoxy(BoardX * 7 / 3, 41);
 	 cout << questscript[quest_id];
-	 gotoxy(BoardX * 7 / 3, 12);
+	 gotoxy(BoardX * 7 / 3, 42);
 	 cout << questreward[quest_id];
  }
 
@@ -66,11 +66,11 @@ void Quest::Render()
 void Quest::Render2() {
 	for (int i = 0; i < 5; i++) {
 		if (state[i] == 1) {
-			gotoxy(BoardX * 7 / 3, 10);
+			gotoxy(BoardX * 7 / 3, 40);
 			cout << questtitle[i];
-			gotoxy(BoardX * 7 / 3, 11);
+			gotoxy(BoardX * 7 / 3, 41);
 			cout << questscript[i];
-			gotoxy(BoardX * 7 / 3, 12);
+			gotoxy(BoardX * 7 / 3, 42);
 			cout << questreward[i];
 		}
 	}
