@@ -8,6 +8,7 @@ class Data
 public:
 	Data();
 	~Data();
+
 	static std::vector<Object* > objects;
 	static std::vector<Item* > items;
 	static std::vector<Item* > inventorys;

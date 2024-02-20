@@ -1,5 +1,4 @@
 #include "Game.h"
-
 Game::Game()
 {
 
@@ -31,6 +30,34 @@ void Game::Init() {
 		Data::objects.emplace_back(Temp);
 		Data::objects[Data::global_id]->Init(Data::global_id);
 		++Data::global_id;
+	}
+	Item* store = nullptr;
+	callitem.open("itemname.txt");
+	if (callitem.is_open())
+	{
+		while (!callitem.eof())
+		{
+			
+			std::getline(callitem, file);
+			if (check == 0) {
+				store = new Item;
+
+				store->Get_Name(file);
+				check++;
+			}
+			else if (check == 1) {
+				store->Get_Price(stoi(file));
+				check++;
+			}
+			else if (check == 2) {
+				store->Get_Ability(stoi(file));
+				check = 0;
+
+				Data::items.emplace_back(store);
+			}
+
+		}
+		callitem.close();
 	}
 }
 
