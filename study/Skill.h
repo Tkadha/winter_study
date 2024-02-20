@@ -20,6 +20,7 @@ public:
 	void Set_Hit_Box();
 	std::vector<Pos> Get_Hit_Point();
 	void Set_Type(Skill_type);
+	void Upgrade_Range();
 private:
 	Skill_type skill_type;
 	int range;

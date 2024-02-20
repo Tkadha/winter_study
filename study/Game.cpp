@@ -21,7 +21,7 @@ void Game::Init() {
 	Data::objects.emplace_back(new Player);
 	Data::objects[Data::user_id] = Player::GetInstance();
 	Data::objects[Data::user_id]->Init(Data::user_id);
-	Object* Temp;
+	Object* Temp{};
 	for (int i = 0; i < mob_count; ++i) {
 		Temp = new Ghost;
 		Data::objects.emplace_back(Temp);

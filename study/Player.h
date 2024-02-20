@@ -4,6 +4,9 @@
 #include "Object.h"
 #include "Skill.h"
 
+
+
+
 class Player : public Object{
 public:
 	~Player();
@@ -22,6 +25,10 @@ public:
 	void Set_Hp(int h);
 	void State_Render();
 	Skill Get_Skill();
+
+	void Regen_State();
+
+	void Upgrade_State();
 public:
 	static bool attack;
 	static Pos attackpoint;
@@ -34,8 +41,11 @@ private:
 
 	int level;
 	int hp, mp;
+	int max_hp, max_mp;
 
 	Skill skill;
 	int skill_count;
+
+	int hp_level, mp_level, range_level, power_level;
 };
 

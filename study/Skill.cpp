@@ -1,6 +1,6 @@
 #include "Skill.h"
 
-Skill::Skill() : range{ 2 }, skill_type{ Skill_type::Cross_X } , skill_count{0}
+Skill::Skill() : range{ 1 }, skill_type{ Skill_type::Cross_X } , skill_count{0}
 {
 	center = { 4,4 };
 	Set_Hit_Box();
@@ -90,4 +90,9 @@ std::vector<Pos> Skill::Get_Hit_Point()
 void Skill::Set_Type(Skill_type type)
 {
 	skill_type = type;
+}
+
+void Skill::Upgrade_Range()
+{
+	++range;
 }

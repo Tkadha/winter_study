@@ -6,24 +6,32 @@ bool Player::attack = false;
 bool Player::skill_on = false;
 Pos Player::attackpoint;
 
-Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP },
-see_attack{ false }, attack_count{ 0 },skill_count{0}
-{
-	pos.x = 1;
-	pos.y = 1;
-	exp = 0;
-	gold = 100;
-	skill.Set_Center(pos);
-}
-
-Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP },
+Player::Player() : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP }, max_hp{ 10 }, max_mp{ 10 },
 see_attack{ false }, attack_count{ 0 }, skill_count{ 0 }
 {
 	pos.x = 1;
 	pos.y = 1;
-	exp = 0;
+	exp = 1000;
 	gold = 100;
 	skill.Set_Center(pos);
+	hp_level = 0;
+	mp_level = 0;
+	range_level = 0;
+	power_level = 0;
+}
+
+Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP }, max_hp{ 10 }, max_mp{ 10 },
+see_attack{ false }, attack_count{ 0 }, skill_count{ 0 }
+{
+	pos.x = 1;
+	pos.y = 1;
+	exp = 1000;
+	gold = 100;
+	skill.Set_Center(pos);
+	hp_level = 0;
+	mp_level = 0;
+	range_level = 0;
+	power_level = 0;
 }
 
 Player* Player::GetInstance()
@@ -45,7 +53,9 @@ void Player::Init(int inid) {
 }
 
 void Player::Update() {
-	if (Input::input) {
+	Regen_State();
+
+	if (Input::input) {	
 		gotoxy(pos.x * 2, pos.y);
 		std::cout << "  ";
 		switch (Input::key)
@@ -70,7 +80,8 @@ void Player::Update() {
 			if (pos.x < BoardX - 2)
 				pos.x++;
 			break;
-		case SPACE:		// 상호작용/확인
+		case SPACE:		
+
 			break;
 		case D:			// 공격
 			if (skill_on) break;
@@ -79,12 +90,20 @@ void Player::Update() {
 			break;
 		case S:			// 스킬 공격
 			if (attack) break;
-			if (!skill_on)
+			if (!skill_on) {
+				if (mp < 2) break;
 				skill_on = true;
+				mp -= 2;
+			}
+			break;
+		case O:
+			gotoxy(pos.x * 2, pos.y);
+			std::cout << "▣";
+			Upgrade_State();
 			break;
 		default:
 			break;
-		}
+		}	
 		if (attack) {
 			gotoxy(attackpoint.x * 2, attackpoint.y);
 			std::cout << "  ";
@@ -139,6 +158,7 @@ void Player::Update() {
 	if (skill_count > 2) {
 		skill_on = false;
 		skill_count = 0;
+		skill.Erase_Render();
 	}
 	if (invincibility) {
 		++invincibility_time;
@@ -148,22 +168,10 @@ void Player::Update() {
 		}
 		return;
 	}
-	/*for (Object* obj : Data::objects) {
-		if (obj->Getid() == Data::user_id)
-			continue;
-		else {
-			Pos mob_pos = obj->Getpos();
-			if (pos == mob_pos) {
-				this->Set_Hp(obj->Getpower());
-			}
-		}
-			
-	}*/
 }
 
 void Player::Render()
 {
-
 	gotoxy(pos.x * 2, pos.y);
 	std::cout << "▣";
 	if (attack) {
@@ -253,11 +261,91 @@ void Player::State_Render()
 	gotoxy(0, BoardY + 2);
 	std::cout << "LEVEL: " << level << "    " << '\n';
 	std::cout << "EXP: " << exp << "    " << '\n';
-	std::cout << "HP: " << hp << " MP: " << mp <<"    "<< '\n';
+	std::cout << "HP: " << hp << "/" << max_hp << " MP: " << mp << "/" << max_mp << "    " << '\n';
+	std::cout << "POWER: " << power << "    " << '\n';
 	std::cout << "GOLD: " << gold << "    " << '\n';
 }
 
 Skill Player::Get_Skill()
 {
 	return skill;
+}
+
+void Player::Regen_State()
+{
+	static int regen_count;
+	++regen_count;
+	if (regen_count > 30) {
+		if (hp < max_hp)++hp;
+		if (mp < max_mp)++mp;
+		regen_count = 0;
+	}
+}
+
+void Player::Upgrade_State()
+{
+	int command = 0;
+	int key = 0;
+	while (key != ESCAPE) {
+		command = _getch();
+		switch (command)
+		{
+		case ESCAPE:		//프로그램 종료
+			key = command;
+			break;
+		case NUM_1:			// 체력 업
+			if (exp > (hp_level + 1) * (20 + hp_level * 10)) {
+				exp -= (hp_level + 1) * (20 + hp_level * 10);
+				++hp_level;
+				max_hp = 10 + hp_level * 10;
+			}
+			else {
+				gotoxy(0, BoardY + 7);
+				std::cout << (hp_level + 1) * (20 + hp_level * 10) - exp<< " 경험치가 부족합니다.";
+			}
+			break;
+		case NUM_2:			// 마나 업
+			if (exp > (mp_level + 1) * (20 + mp_level * 10)) {
+				exp -= (mp_level + 1) * (20 + mp_level * 10);
+				++mp_level;
+				max_mp = 10 + mp_level * 10;
+			}
+			else {
+				gotoxy(0, BoardY + 7);
+				std::cout << (mp_level + 1) * (20 + mp_level * 10) - exp << " 경험치가 부족합니다.";
+			}
+			break;
+		case NUM_3:			// 사거리 업
+			if (exp > (range_level + 1) * (500 + range_level * 300))
+			{
+				exp -= (range_level + 1) * (500 + range_level * 300);
+				++range_level;
+				skill.Upgrade_Range();
+			}
+			else {
+				gotoxy(0, BoardY + 7);
+				std::cout << (range_level + 1) * (500 + range_level * 300) - exp << " 경험치가 부족합니다.";
+			}
+			break;
+		case NUM_4:
+			if (exp > (power_level + 1) * (200 + power_level * 100))
+			{
+				exp -= (power_level + 1) * (200 + power_level * 100);
+				++power_level;
+				++power;
+			}
+			else {
+				gotoxy(0, BoardY + 7);
+				std::cout << (power_level + 1) * (200 + power_level * 100) - exp << " 경험치가 부족합니다.";
+			}
+			break;
+		default:
+			key = command;
+			break;
+		}
+		level = 1 + (hp_level + mp_level + power_level) / 3;
+		State_Render();
+	}
+	gotoxy(0, BoardY + 7);
+	std::cout <<"                               ";
 }
