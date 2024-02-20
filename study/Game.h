@@ -12,6 +12,7 @@
 #include "StoreNPC.h"
 #include "Market.h"
 #include "Item.h"
+#include "Quest.h"
 
 const int mob_count = 3;
 class Game {

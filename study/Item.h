@@ -48,6 +48,10 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+	
+	bool operator==(Item& other) const {
+		return (id == other.id);
+	}
 	void Set_Name(std::string a);
 	void Set_Price(int a);
 	void Set_Ability(int a);

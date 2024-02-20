@@ -6,6 +6,7 @@ Goblin::Goblin() : Monster()
 	hp = 3;
 	gold = 100;
 	exp = 20;
+	drop_item = Data::items[Item_Code::Goblin_ear];
 }
 
 Goblin::~Goblin()

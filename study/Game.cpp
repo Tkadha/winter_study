@@ -18,28 +18,13 @@ void Game::Init() {
 	quest_npc->Init();
 	store_npc->Init();
 	market->Init();
-	//Data::quests.emplace_back(new )
-	Data::objects.emplace_back(new Player);
-	Data::objects[Data::user_id] = Player::GetInstance();
-	Data::objects[Data::user_id]->Init(Data::user_id);
-	Object* Temp{};
-	for (int i = 0; i < mob_count; ++i) {
-		Temp = new Ghost;
-		Data::objects.emplace_back(Temp);
-		Data::objects[Data::global_id]->Init(Data::global_id);
-		++Data::global_id;
-		Temp = new Goblin;
-		Data::objects.emplace_back(Temp);
-		Data::objects[Data::global_id]->Init(Data::global_id);
-		++Data::global_id;
-	}
+	
 	Item* store = nullptr;
 	callitem.open("itemname.txt");
 	if (callitem.is_open())
 	{
 		while (!callitem.eof())
 		{
-			
 			std::getline(callitem, file);
 			if (check == 0) {
 				store = new Item;
@@ -57,10 +42,25 @@ void Game::Init() {
 
 				Data::items.emplace_back(store);
 			}
-
 		}
 		callitem.close();
 	}
+
+	Data::objects.emplace_back(new Player);
+	Data::objects[Data::user_id] = Player::GetInstance();
+	Data::objects[Data::user_id]->Init(Data::user_id);
+	Object* Temp{};
+	for (int i = 0; i < mob_count; ++i) {
+		Temp = new Ghost;
+		Data::objects.emplace_back(Temp);
+		Data::objects[Data::global_id]->Init(Data::global_id);
+		++Data::global_id;
+		Temp = new Goblin;
+		Data::objects.emplace_back(Temp);
+		Data::objects[Data::global_id]->Init(Data::global_id);
+		++Data::global_id;
+	}
+	
 }
 
 void Game::Update() {

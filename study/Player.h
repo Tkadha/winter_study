@@ -3,7 +3,7 @@
 #include "Input.h"
 #include "Object.h"
 #include "Skill.h"
-
+#include "Inventory.h"
 
 
 
@@ -35,6 +35,8 @@ public:
 	static bool attack;
 	static Pos attackpoint;
 	static bool skill_on;
+	Inventory inven;
+
 private:
 	static Player* instance;
 	int way;
@@ -49,5 +51,6 @@ private:
 	int skill_count;
 
 	int hp_level, mp_level, range_level, power_level;
+
 };
 

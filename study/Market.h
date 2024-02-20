@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "Data.h"
 #include "Player.h"
+using namespace std;
 class Market
 {
 public:

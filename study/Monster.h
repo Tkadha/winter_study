@@ -36,6 +36,7 @@ protected:
 	int hp;
 	int range;
 	int way;
+	Item* drop_item;
 	Player* p = Player::GetInstance();
 	int type;
 
