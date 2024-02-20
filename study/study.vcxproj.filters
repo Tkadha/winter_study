@@ -95,6 +95,9 @@
     <ClCompile Include="QuestNPC.cpp">
       <Filter>소스 파일\main\Game\object\NPC</Filter>
     </ClCompile>
+    <ClCompile Include="Market.cpp">
+      <Filter>소스 파일\main\system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -150,6 +153,9 @@
     </ClInclude>
     <ClInclude Include="QuestNPC.h">
       <Filter>소스 파일\main\Game\object\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Market.h">
+      <Filter>소스 파일\main\system</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

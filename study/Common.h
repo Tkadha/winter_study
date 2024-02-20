@@ -8,6 +8,7 @@
 const int BoardX = 30;
 const int BoardY = 30;
 
+
 const int UP = 72;
 const int DOWN = 80;
 const int LEFT = 75;
@@ -29,6 +30,11 @@ const int NUM_1 = 49;
 const int NUM_2 = 50;
 const int NUM_3 = 51;
 const int NUM_4 = 52;
+const int  M = 109;
+const int  PLUS = 43;
+const int  MINUS = 45;
+const int  B = 98;
+
 
 struct Pos {
 	int x;

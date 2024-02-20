@@ -237,15 +237,19 @@ int Player::Getid()
 {
 	return id;
 }
+int Player::Getgold()
+{
+	return gold;
+}
 
 void Player::Setexp(int a)
 {
-	gold += a;
+	exp += a;
 }
 
 void Player::Setgold(int b) 
 {
-	exp += b;
+	gold += b;
 }
 
 void Player::Set_Hp(int h)
