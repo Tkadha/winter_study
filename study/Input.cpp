@@ -36,7 +36,7 @@ void Input::Update()
 				break;
 			case WAVE:
 				key = command;
-				gotoxy(0, BoardY);
+				gotoxy(0, BoardY*5/3);
 				std::cout << "Press Enter to continue..." << std::endl;
 				while (!_kbhit());
 				time->TimerRestart();
