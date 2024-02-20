@@ -5,6 +5,7 @@ Ghost::Ghost() : Monster()
 	type = Type::Type_Ghost;
 	gold = 50;
 	exp = 10;
+	drop_item = Data::items[Item_Code::Ghost_soul];
 }
 
 Ghost::~Ghost()

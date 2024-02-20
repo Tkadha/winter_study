@@ -213,6 +213,10 @@ void Monster::CheckHit(int t)
 		break;
 	}
 	if (hp < 1) {
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> drop_probability(0, 100);
+		if (drop_probability(gen) > 50) p->inven.In_Item(drop_item);
 		p->Setexp(exp);
 		p->Setgold(gold);
 		regeneration = true;

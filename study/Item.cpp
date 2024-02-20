@@ -44,3 +44,8 @@ void Item::Get_Ability(int a)
 {
 	item_ability = a;
 }
+
+std::string Item::Set_Name()
+{
+	return item_name;
+}

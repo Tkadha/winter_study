@@ -96,10 +96,15 @@ void Player::Update() {
 				mp -= 2;
 			}
 			break;
-		case O:
+		case O:			// 능력치 올리기
 			gotoxy(pos.x * 2, pos.y);
 			std::cout << "▣";
 			Upgrade_State();
+			break;
+		case I:			// 인벤토리 오픈
+			gotoxy(pos.x * 2, pos.y);
+			std::cout << "▣";
+			inven.Render();
 			break;
 		default:
 			break;

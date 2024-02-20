@@ -25,6 +25,7 @@ const int J = 106;
 const int K = 107;
 const int S = 115;
 const int O = 111;
+const int I = 105;
 const int NUM_1 = 49;
 const int NUM_2 = 50;
 const int NUM_3 = 51;

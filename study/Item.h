@@ -51,6 +51,10 @@ public:
 	void Get_Name(std::string a);
 	void Get_Price(int a);
 	void Get_Ability(int a);
+	std::string Set_Name();
+	bool operator==(Item& other) const {
+		return (id == other.id);
+	}
 private:
 	Item_Code id;
 	std::string item_name;
