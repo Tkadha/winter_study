@@ -30,17 +30,32 @@ void Item::Destroy()
 
 }
 
-void Item::Get_Name(std::string a)
+void Item::Set_Name(std::string a)
 {
 	item_name = a;
 }
 
-void Item::Get_Price(int a)
+void Item::Set_Price(int a)
 {
 	item_price = a;
 }
 
-void Item::Get_Ability(int a)
+void Item::Set_Ability(int a)
 {
 	item_ability = a;
+}
+
+std::string Item::Get_Name()
+{
+	return item_name;
+}
+
+int Item::Get_Price()
+{
+	return item_price;
+}
+
+int Item::Get_Ability()
+{
+	return item_ability;
 }

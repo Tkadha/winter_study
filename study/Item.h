@@ -48,9 +48,12 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-	void Get_Name(std::string a);
-	void Get_Price(int a);
-	void Get_Ability(int a);
+	void Set_Name(std::string a);
+	void Set_Price(int a);
+	void Set_Ability(int a);
+	std::string Get_Name();
+	int Get_Price();
+	int Get_Ability();
 private:
 	Item_Code id;
 	std::string item_name;

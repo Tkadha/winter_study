@@ -16,6 +16,8 @@ void Game::Init() {
 	input->Init();
 	quest->Init();
 	quest_npc->Init();
+	store_npc->Init();
+	market->Init();
 	//Data::quests.emplace_back(new )
 	Data::objects.emplace_back(new Player);
 	Data::objects[Data::user_id] = Player::GetInstance();
@@ -42,15 +44,15 @@ void Game::Init() {
 			if (check == 0) {
 				store = new Item;
 
-				store->Get_Name(file);
+				store->Set_Name(file);
 				check++;
 			}
 			else if (check == 1) {
-				store->Get_Price(stoi(file));
+				store->Set_Price(stoi(file));
 				check++;
 			}
 			else if (check == 2) {
-				store->Get_Ability(stoi(file));
+				store->Set_Ability(stoi(file));
 				check = 0;
 
 				Data::items.emplace_back(store);
@@ -67,6 +69,8 @@ void Game::Update() {
 	input->Update();
 	quest->Update();
 	quest_npc->Update();
+	market->Update();
+	store_npc->Update();
 	for (Object* obj : Data::objects) {
 		obj->Update();
 	}
@@ -76,6 +80,13 @@ void Game::Render() {
 	board->Render();
 	time->Render();
 	quest_npc->Render();
+	store_npc->Render();
+	if (StoreNPC::market_open == 1) {
+		market->Render();
+	}
+	else if (StoreNPC::market_open == 2) {
+		market->RenderSell();
+	}
 	if (QuestNPC::open == 1) {
 		quest->Render();
 	}

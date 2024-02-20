@@ -9,6 +9,8 @@
 #include "Ghost.h"
 #include "Goblin.h"
 #include "QuestNPC.h"
+#include "StoreNPC.h"
+#include "Market.h"
 #include "Item.h"
 
 const int mob_count = 3;
@@ -28,6 +30,8 @@ private:
 	Input* input = new Input;
 	Quest* quest = new Quest;
 	QuestNPC* quest_npc = new QuestNPC;
+	StoreNPC* store_npc = new StoreNPC;
+	Market* market = new Market;
 	Timer* time = Timer::GetInstance();
 	
 	std::ifstream callitem;

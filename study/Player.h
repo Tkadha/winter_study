@@ -18,6 +18,7 @@ public:
 	virtual int Getid() override;
 
 	void Setexp(int a);
+	int Getgold();
 	void Setgold(int b);
 	void Set_Hp(int h);
 	void State_Render();
