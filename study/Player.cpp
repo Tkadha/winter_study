@@ -54,28 +54,31 @@ void Player::Init(int inid) {
 
 void Player::Update() {
 	Regen_State();
-
 	if (Input::input) {	
 		gotoxy(pos.x * 2, pos.y);
 		std::cout << "  ";
 		switch (Input::key)
 		{
 		case UP:
+			skill.Erase_Render();
 			way = Input::key;
 			if (pos.y > 1)
 				pos.y--;
 			break;
 		case DOWN:
+			skill.Erase_Render();
 			way = Input::key;
 			if (pos.y < BoardY - 2)
 				pos.y++;
 			break;
 		case LEFT:
+			skill.Erase_Render();
 			way = Input::key;
 			if (pos.x > 1)
 				pos.x--;
 			break;
 		case RIGHT:
+			skill.Erase_Render();
 			way = Input::key;
 			if (pos.x < BoardX - 2)
 				pos.x++;
