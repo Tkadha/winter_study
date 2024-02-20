@@ -2,8 +2,9 @@
 
 Ghost::Ghost() : Monster()
 {
+	type = Type::Type_Ghost;
 	gold = 50;
-	exp = 5;
+	exp = 10;
 }
 
 Ghost::~Ghost()

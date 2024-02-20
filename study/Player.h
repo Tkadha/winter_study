@@ -24,6 +24,7 @@ public:
 	void Setgold(int b);
 	void Set_Hp(int h);
 	int Get_Power();
+	int Get_Level();
 	void State_Render();
 	Skill Get_Skill();
 

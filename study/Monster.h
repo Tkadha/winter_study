@@ -14,7 +14,10 @@ enum Attack_Type {
 	Type_Attack,
 	Type_Skill
 };
-
+enum Type {
+	Type_Ghost,
+	Type_Goblin
+};
 class Monster : public Object
 {
 public:
@@ -34,7 +37,7 @@ protected:
 	int range;
 	int way;
 	Player* p = Player::GetInstance();
-
+	int type;
 
 
 	bool regeneration;

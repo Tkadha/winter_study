@@ -1,6 +1,6 @@
 #include "Monster.h"
 
-Monster::Monster() : move_count{0},hp{1},range{5}, regeneration{ false }, regeneration_time{ 0 }
+Monster::Monster() : move_count{ 0 }, hp{ 1 }, range{ 5 }, regeneration{ false }, regeneration_time{ 0 }, way{ 0 }
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -37,11 +37,18 @@ void Monster::Update()
 			invincibility_time = 0;
 
 			regeneration = false;
-			regeneration_time = 0;
-			if (exp == 10)	// 몬스터 종류 구분
-				hp = 2;
-			else
-				hp = 1;
+			regeneration_time = 0;			
+			int player_level = p->Get_Level();
+			if (type == Type::Type_Ghost) {
+				hp = 1 * player_level;
+				exp = 10 * player_level;
+				gold = 50 + player_level * 25;
+			}
+			else {
+				hp = 3 * player_level;
+				exp = 20 * player_level;
+				gold = 100 + player_level * 50;
+			}
 		}
 		return;
 	}
@@ -163,17 +170,17 @@ int Monster::Getid()
 
 
 
-void Monster::CheckHit(int type)
+void Monster::CheckHit(int t)
 {
 	if (invincibility) return;
 	bool hit = false;
-	if (type == Type_Attack) {
+	if (t == Type_Attack) {
 		Pos playerpos = Player::attackpoint;
 		if ((pos.x == playerpos.x) && (pos.y == playerpos.y)) {
 			hit = true;
 		}
 	}
-	else if (type == Type_Skill) {
+	else if (t == Type_Skill) {
 		Skill skill = p->Get_Skill();
 		std::vector<Pos> points = skill.Get_Hit_Point();
 		for (Pos point : points)
@@ -182,6 +189,7 @@ void Monster::CheckHit(int type)
 	}
 	if (!hit) return;
 	hp -= p->Getpower();
+	if (hp < 0) hp = 0;
 	invincibility = true;
 	move_count = 0;
 	switch (way) {
@@ -209,6 +217,11 @@ void Monster::CheckHit(int type)
 		p->Setgold(gold);
 		regeneration = true;
 	}
+	gotoxy(30, BoardY + 2);
+	std::cout << "                        ";
+	gotoxy(30, BoardY + 2);
+	if (type == Type_Ghost) std::cout << "Ghost 남은 체력: " << hp;
+	else if (type == Type_Goblin) std::cout << "Goblin 남은 체력: " << hp;
 }
 
 

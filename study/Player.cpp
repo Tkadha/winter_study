@@ -261,6 +261,11 @@ int Player::Get_Power()
 	return power;
 }
 
+int Player::Get_Level()
+{
+	return level;
+}
+
 void Player::State_Render()
 {
 	gotoxy(0, BoardY + 2);

@@ -2,9 +2,10 @@
 
 Goblin::Goblin() : Monster()
 {
-	hp = 2;
+	type = Type::Type_Goblin;
+	hp = 3;
 	gold = 100;
-	exp = 10;
+	exp = 20;
 }
 
 Goblin::~Goblin()
