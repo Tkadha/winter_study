@@ -181,7 +181,7 @@ void Monster::CheckHit(int type)
 				hit = true;			
 	}
 	if (!hit) return;
-	hp--;
+	hp -= p->Getpower();
 	invincibility = true;
 	move_count = 0;
 	switch (way) {

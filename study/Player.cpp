@@ -256,6 +256,11 @@ void Player::Set_Hp(int h)
 	if (hp < 0) hp = 0;
 }
 
+int Player::Get_Power()
+{
+	return power;
+}
+
 void Player::State_Render()
 {
 	gotoxy(0, BoardY + 2);

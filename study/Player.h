@@ -23,11 +23,11 @@ public:
 	void Setexp(int a);
 	void Setgold(int b);
 	void Set_Hp(int h);
+	int Get_Power();
 	void State_Render();
 	Skill Get_Skill();
 
 	void Regen_State();
-
 	void Upgrade_State();
 public:
 	static bool attack;
