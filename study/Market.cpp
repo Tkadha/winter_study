@@ -17,11 +17,13 @@ void Market::Update()
 {
 	if (Input::input) {
 		if (Input::key == PLUS) {
-			gotoxy(BoardX * 10 / 3, 5 + arrow);
-			std::cout << "   ";
-			gotoxy(BoardX * 6 / 3, 5 + arrow);
-			std::cout << "   ";
-			arrow++;
+			if (arrow < Data::items.size()-1) {
+				gotoxy(BoardX * 10 / 3, 5 + arrow);
+				std::cout << "   ";
+				gotoxy(BoardX * 6 / 3, 5 + arrow);
+				std::cout << "   ";
+				arrow++;
+			}
 		}
 		else if (Input::key == MINUS) {
 			if (arrow > 0) {
