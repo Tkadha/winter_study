@@ -55,11 +55,13 @@ public:
 	void Set_Name(std::string a);
 	void Set_Price(int a);
 	void Set_Ability(int a);
+	void Set_id(int a);
 	std::string Get_Name();
 	int Get_Price();
 	int Get_Ability();
+	int Get_Code();
 private:
-	Item_Code id;
+	int id;
 	std::string item_name;
 	int item_price;
 	int item_ability;

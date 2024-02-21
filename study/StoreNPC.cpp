@@ -31,8 +31,10 @@ void StoreNPC::Update()
 					gotoxy(BoardX * 7 / 3, 5 + i);
 					std::cout << "                             ";
 				}
-				gotoxy(BoardX * 6 / 3, 5 + arrow);
+				gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
 				std::cout << "  ";
+				gotoxy(BoardX * 10 / 3 - 5, 3);
+				std::cout << "      ";
 				market_open = 0;
 			}
 		}

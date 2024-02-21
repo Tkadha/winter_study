@@ -5,7 +5,14 @@
 #include "Skill.h"
 #include "Inventory.h"
 
-
+struct Armor
+{
+	Item* Weapon = nullptr;
+	Item* Helmet = nullptr;
+	Item* Chestplate = nullptr;
+	Item* leggings = nullptr;
+	Item* shoes = nullptr;
+};
 
 class Player : public Object{
 public:
@@ -31,6 +38,9 @@ public:
 
 	void Regen_State();
 	void Upgrade_State();
+
+	void Open_Inventory();
+	int Armor_Ability();
 public:
 	static bool attack;
 	static Pos attackpoint;
@@ -52,5 +62,6 @@ private:
 
 	int hp_level, mp_level, range_level, power_level;
 
+	Armor armor;
 };
 
