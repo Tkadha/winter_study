@@ -20,7 +20,7 @@ void Market::Update()
 			if (arrow < Data::items.size()-1) {
 				gotoxy(BoardX * 10 / 3, 5 + arrow);
 				std::cout << "   ";
-				gotoxy(BoardX * 6 / 3, 5 + arrow);
+				gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
 				std::cout << "   ";
 				arrow++;
 			}
@@ -29,7 +29,7 @@ void Market::Update()
 			if (arrow > 0) {
 				gotoxy(BoardX * 10 / 3, 5 + arrow);
 				std::cout << "   ";
-				gotoxy(BoardX * 6 / 3, 5 + arrow);
+				gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
 				std::cout << "   ";
 				arrow--;
 			}
@@ -57,7 +57,7 @@ void Market::Update()
 					gotoxy(BoardX * 7 / 3, 5 + i);
 					cout << "                                ";
 				}
-				gotoxy(BoardX * 6 / 3, 5 + arrow);
+				gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
 				cout << "  ";
 				arrow = 0;
 			}
@@ -67,6 +67,8 @@ void Market::Update()
 
 void Market::Render()
 {
+	gotoxy(BoardX * 10 / 3 - 5, 3);
+	std::cout << "[구매]";
 	if (first == 1) {
 		first = 0;
 		arrow = 0;
@@ -87,7 +89,8 @@ void Market::Render()
 
 void Market::RenderSell()
 {
-	
+	gotoxy(BoardX * 10 / 3 - 5, 3);
+	std::cout << "[판매]";
 	market_state = 2;
 	gotoxy(BoardX * 10 / 3, 5 + arrow);
 	std::cout << "  ";
@@ -95,7 +98,7 @@ void Market::RenderSell()
 		first = 1;
 		arrow = 0;
 	}
-	gotoxy(BoardX * 6 / 3, 5 + arrow);
+	gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
 	std::cout << "->";
 	for (int i = 0; i < Data::items.size(); i++) {
 		gotoxy(BoardX * 7 / 2, 5 + i);

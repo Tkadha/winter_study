@@ -28,8 +28,10 @@ void Game::Init() {
 			std::getline(callitem, file);
 			if (check == 0) {
 				store = new Item;
-
+				static int id = 0;
+				store->Set_id(id);
 				store->Set_Name(file);
+				id++;
 				check++;
 			}
 			else if (check == 1) {

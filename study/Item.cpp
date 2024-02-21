@@ -45,6 +45,11 @@ void Item::Set_Ability(int a)
 	item_ability = a;
 }
 
+void Item::Set_id(int a)
+{
+	id = a;
+}
+
 std::string Item::Get_Name()
 {
 	return item_name;
@@ -58,4 +63,9 @@ int Item::Get_Price()
 int Item::Get_Ability()
 {
 	return item_ability;
+}
+
+int Item::Get_Code()
+{
+	return id;
 }

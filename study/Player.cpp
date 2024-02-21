@@ -17,7 +17,7 @@ see_attack{ false }, attack_count{ 0 }, skill_count{ 0 }
 	hp_level = 0;
 	mp_level = 0;
 	range_level = 0;
-	power_level = 0;
+	power_level = 0;	
 }
 
 Player::Player(const Player& other) : level{ 1 }, hp{ 10 }, mp{ 10 }, way{ UP }, max_hp{ 10 }, max_mp{ 10 },
@@ -107,7 +107,7 @@ void Player::Update() {
 		case I:			// 인벤토리 오픈
 			gotoxy(pos.x * 2, pos.y);
 			std::cout << "▣";
-			inven.Render();
+			Open_Inventory();
 			break;
 		default:
 			break;
@@ -312,14 +312,14 @@ void Player::Upgrade_State()
 		command = _getch();
 		switch (command)
 		{
-		case ESCAPE:		//프로그램 종료
+		case ESCAPE:		
 			key = command;
 			break;
 		case NUM_1:			// 체력 업
 			if (exp > (hp_level + 1) * (20 + hp_level * 10)) {
 				exp -= (hp_level + 1) * (20 + hp_level * 10);
 				++hp_level;
-				max_hp = 10 + hp_level * 10;
+				max_hp = 10 + hp_level * 10 + Armor_Ability();
 			}
 			else {
 				gotoxy(0, BoardY + 7);
@@ -370,4 +370,161 @@ void Player::Upgrade_State()
 	}
 	gotoxy(0, BoardY + 7);
 	std::cout <<"                               ";
+}
+
+void Player::Open_Inventory()
+{
+	int command = 0;
+	int key = 0;
+	int arrow = 0;
+	int max = inven.Max_Storage();
+	while (key != ESCAPE) {
+		inven.Clear_Render();
+		inven.Render();	
+		gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
+		std::cout << "->";
+		max_hp = 10 + hp_level * 10 + Armor_Ability();
+		max_mp = 10 + mp_level * 10;
+		command = _getch();
+		if (command == 224) {
+			command = _getch();
+			switch (command)
+			{
+			case UP:
+				gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
+				std::cout << "  ";
+				if (arrow > 0) --arrow;
+				break;
+			case DOWN:
+				gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
+				std::cout << "  ";
+				if (arrow < max - 1) ++arrow;
+				break;
+			default:
+				key = command;
+				break;
+			}
+		}
+		else {
+			switch (command)
+			{
+			case B:
+			{
+				if (max == 0) break;
+				Item* item = inven.Get_Item_Data(arrow);
+				int code = item->Get_Code();
+				switch (code) {
+				case Item_Code::Hp_low_potion:
+				case Item_Code::Hp_middle_potion:
+				case Item_Code::Hp_high_potion:
+					hp += item->Get_Ability();
+					if (hp > max_hp) hp = max_hp;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Mp_low_potion:
+				case Item_Code::Mp_middle_potion:
+				case Item_Code::Mp_high_potion:
+					mp += item->Get_Ability();
+					if (mp > max_mp) mp = max_mp;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Sword:
+					skill.Set_Type(Skill_type::Cross_X);
+					if (armor.Weapon != nullptr) {
+						power -= armor.Weapon->Get_Ability();
+						inven.In_Item(armor.Weapon);
+					}
+					power += item->Get_Ability();
+					armor.Weapon = item;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Spear:
+					skill.Set_Type(Skill_type::Cross);
+					if (armor.Weapon != nullptr) {
+						power -= armor.Weapon->Get_Ability();
+						inven.In_Item(armor.Weapon);
+					}
+					power += item->Get_Ability();
+					armor.Weapon = item;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Axe:
+					skill.Set_Type(Skill_type::Circle);
+					if (armor.Weapon != nullptr) {
+						power -= armor.Weapon->Get_Ability();
+						inven.In_Item(armor.Weapon);
+					}
+					power += item->Get_Ability();
+					armor.Weapon = item;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Lether_Helmet:
+				case Item_Code::Iron_Helmet:
+				case Item_Code::Diamond_Helmet:
+					if (armor.Helmet != nullptr) {
+						inven.In_Item(armor.Helmet);
+					}
+					armor.Helmet = item;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Lether_Chestplate:
+				case Item_Code::Iron_Chestplate:
+				case Item_Code::Diamond_Chestplate:
+					if (armor.Chestplate != nullptr) {
+						inven.In_Item(armor.Chestplate);
+					}
+					armor.Chestplate = item;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Lether_leggings:
+				case Item_Code::Iron_leggings:
+				case Item_Code::Diamond_leggings:
+					if (armor.leggings != nullptr) {
+						inven.In_Item(armor.leggings);
+					}
+					armor.leggings = item;
+					inven.Out_Item(arrow);
+					break;
+				case Item_Code::Lether_shoes:
+				case Item_Code::Iron_shoes:
+				case Item_Code::Diamond_shoes:
+					if (armor.shoes != nullptr) {
+						inven.In_Item(armor.shoes);
+					}
+					armor.shoes = item;
+					inven.Out_Item(arrow);
+					break;
+				default:
+					break;
+				}
+				max = inven.Max_Storage();
+			}
+			break;
+			default:
+				key = command;
+				break;
+			}
+			State_Render();
+		}		
+	}
+	gotoxy((BoardX * 7 / 3) - 3, 5 + arrow);
+	std::cout << "  ";
+}
+
+int Player::Armor_Ability()
+{
+	int Helmet_hp, Chestplate_hp, leggings_hp, shoes_hp;
+	if (armor.Helmet == nullptr) Helmet_hp = 0;
+	else Helmet_hp = armor.Helmet->Get_Ability();
+
+	if (armor.Chestplate == nullptr) Chestplate_hp = 0;
+	else Chestplate_hp = armor.Chestplate->Get_Ability();
+
+	if (armor.leggings == nullptr) leggings_hp = 0;
+	else leggings_hp = armor.leggings->Get_Ability();
+
+	if (armor.shoes == nullptr) shoes_hp = 0;
+	else shoes_hp = armor.shoes->Get_Ability();
+
+	return Helmet_hp + Chestplate_hp + leggings_hp + shoes_hp;
 }
